@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 沖繩親子冒險 旅遊手冊</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <style>
 :root {
   --ocean: #0077B6;
@@ -273,8 +274,78 @@ body {
 
 .day-header {
   text-align: center;
-  margin-bottom: 2rem;
-  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+  padding: 2rem 1rem 1rem;
+}
+
+.day-map-wrap {
+  max-width: 52rem;
+  margin: 0 auto 1.75rem;
+  padding: 0 1rem;
+}
+
+.day-map-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.day-map-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--ocean-deep);
+}
+
+.day-map-hint {
+  font-size: 0.72rem;
+  color: var(--gray);
+}
+
+.day-map {
+  height: min(42vh, 320px);
+  min-height: 240px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--ocean-light);
+  box-shadow: 0 4px 18px rgba(2, 62, 138, 0.12);
+  background: var(--gray-light);
+}
+
+.day-map .leaflet-control-attribution {
+  font-size: 10px;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media print {
+  .day-map-wrap { display: none !important; }
+}
+
+.day-map .day-map-num-outer {
+  background: transparent !important;
+  border: none !important;
+}
+
+.day-map .day-map-num-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--white);
+  border: 2px solid var(--white);
+  box-shadow: 0 2px 8px rgba(27, 40, 56, 0.35);
 }
 
 .day-date {
@@ -872,6 +943,14 @@ a.place-map:hover {
       <div class="day-subtitle"><a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a> → <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></div>
     </div>
 
+    <div class="day-map-wrap" aria-label="第一天行程地圖">
+      <div class="day-map-head">
+        <span class="day-map-title">🗺️ 第一天 · 景點與住宿參考位置</span>
+        <span class="day-map-hint">數字為建議順序 · 點圓標開啟 Google 地圖</span>
+      </div>
+      <div id="map-day1" class="day-map" role="img" aria-label="地圖：台中機場、那霸空港、那霸飯店"></div>
+    </div>
+
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot spot"></div>
@@ -948,6 +1027,14 @@ a.place-map:hover {
       <div class="day-date">2026年8月20日（四）</div>
       <div class="day-title">水族館 × 恐龍公園 大冒險</div>
       <div class="day-subtitle">沖繩北部探索 → 那霸<a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></div>
+    </div>
+
+    <div class="day-map-wrap" aria-label="第二天行程地圖">
+      <div class="day-map-head">
+        <span class="day-map-title">🗺️ 第二天 · 團體路線（虛線為參訪順序示意）</span>
+        <span class="day-map-hint">實際車程以導遊／導航為準</span>
+      </div>
+      <div id="map-day2" class="day-map" role="img" aria-label="地圖：美麗海、鳳梨園、國際通"></div>
     </div>
 
     <div class="timeline">
@@ -1032,6 +1119,14 @@ a.place-map:hover {
       <div class="day-subtitle">贈送單軌電車一日券 🚝</div>
     </div>
 
+    <div class="day-map-wrap" aria-label="第三天行程地圖">
+      <div class="day-map-head">
+        <span class="day-map-title">🗺️ 第三天 · 自由日（三色為 A／B／C 建議路線）</span>
+        <span class="day-map-hint">可擇一路線走，不必全去</span>
+      </div>
+      <div id="map-day3" class="day-map" role="img" aria-label="地圖：首里城、購物、浦添路線"></div>
+    </div>
+
     <div class="tips-panel">
       <h3>🎫 電車一日券可以去的地方</h3>
       <ul>
@@ -1113,6 +1208,14 @@ a.place-map:hover {
       <div class="day-date">2026年8月22日（六）</div>
       <div class="day-title">最後衝刺＆回家</div>
       <div class="day-subtitle"><a class="place-map" href="https://maps.app.goo.gl/LGKiPsZ3WQAY95d36" target="_blank" rel="noopener noreferrer">波之上神宮</a> → <a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">Outlet</a> → <a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島</a> → <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></div>
+    </div>
+
+    <div class="day-map-wrap" aria-label="第四天行程地圖">
+      <div class="day-map-head">
+        <span class="day-map-title">🗺️ 第四天 · 回程前動線</span>
+        <span class="day-map-hint">虛線為建議參訪順序</span>
+      </div>
+      <div id="map-day4" class="day-map" role="img" aria-label="地圖：波上、Outlet、瀨長島、那霸空港"></div>
     </div>
 
     <div class="timeline">
@@ -1247,6 +1350,138 @@ a.place-map:hover {
 
 <div class="save-toast" id="saveToast">✓ 已儲存</div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function () {
+  const esc = (s) => String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/"/g, '&quot;');
+
+  function mapPopup(label, url) {
+    return `<div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;line-height:1.5"><strong>${esc(label)}</strong><br><a href="${esc(url)}" target="_blank" rel="noopener noreferrer" style="color:#0077B6;font-weight:600">Google 地圖</a></div>`;
+  }
+
+  function numIcon(n, fill) {
+    const s = String(n);
+    const fs = s.length > 1 ? 10 : 13;
+    return L.divIcon({
+      className: 'day-map-num-outer',
+      html: `<span class="day-map-num-inner" style="background:${fill};font-size:${fs}px">${s}</span>`,
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    });
+  }
+
+  const OSM = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const OSM_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+  const DAY_MAPS = {
+    day1: {
+      markers: [
+        { n: 1, lat: 24.2647, lng: 120.6206, label: '台中機場（出發）', url: 'https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA', fill: '#023E8A' },
+        { n: 2, lat: 26.196, lng: 127.6461, label: '那霸空港（抵達）', url: 'https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6', fill: '#0077B6' },
+        { n: 3, lat: 26.2156, lng: 127.6793, label: 'Hotel Azat', url: 'https://maps.app.goo.gl/1aTooC6jyBXeztBK8', fill: '#2D6A4F' },
+        { n: 4, lat: 26.2142, lng: 127.679, label: '南西觀光', url: 'https://maps.app.goo.gl/gecKfrw46ZyWGzU6A', fill: '#2D6A4F' },
+        { n: 5, lat: 26.218, lng: 127.6845, label: 'Community & Spa 中央酒店(別館)', url: 'https://maps.app.goo.gl/cXUhFHVBLrknKvWB9', fill: '#2D6A4F' },
+        { n: 6, lat: 26.2092, lng: 127.68, label: 'Hotel Lantana', url: 'https://maps.app.goo.gl/i4gZzwtj7GyCQ5q97', fill: '#2D6A4F' },
+        { n: 7, lat: 26.2108, lng: 127.6815, label: '沖繩RJ', url: 'https://maps.app.goo.gl/xmenL6AR6Sxz78BTA', fill: '#2D6A4F' }
+      ],
+      lines: [
+        { latlngs: [[24.2647, 120.6206], [26.196, 127.6461]], color: '#0077B6', dash: '10 14', weight: 3 },
+        { latlngs: [[26.196, 127.6461], [26.2139, 127.6792]], color: '#2D6A4F', dash: '6 10', weight: 3 }
+      ]
+    },
+    day2: {
+      markers: [
+        { n: 1, lat: 26.6945, lng: 127.8789, label: '海洋博公園 ＆ 美麗海水族館', url: 'https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7', fill: '#023E8A' },
+        { n: 2, lat: 26.5958, lng: 127.9775, label: '名護鳳梨園（含恐龍公園）', url: 'https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8', fill: '#0077B6' },
+        { n: 3, lat: 26.2139, lng: 127.6792, label: '國際通大道', url: 'https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7', fill: '#2D6A4F' }
+      ],
+      lines: [
+        { latlngs: [[26.6945, 127.8789], [26.5958, 127.9775], [26.2139, 127.6792]], color: '#0077B6', dash: '10 12', weight: 3 }
+      ]
+    },
+    day3: {
+      markers: [
+        { n: 'A1', lat: 26.217, lng: 127.719, label: '【路線 A】首里城', url: 'https://maps.app.goo.gl/nHDxnPEirHicPrX57', fill: '#2D6A4F' },
+        { n: 'A2', lat: 26.2148, lng: 127.6886, label: '【路線 A】榮町市場', url: 'https://maps.app.goo.gl/JqbjpN2LByFWTPEK7', fill: '#2D6A4F' },
+        { n: 'B1', lat: 26.3026, lng: 127.7659, label: '【路線 B】AEON MALL Okinawa Rycom', url: 'https://maps.app.goo.gl/wfV52WwLwcMhLSUR7', fill: '#0077B6' },
+        { n: 'B2', lat: 26.2247, lng: 127.6979, label: '【路線 B】新都心', url: 'https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7', fill: '#0077B6' },
+        { n: 'C1', lat: 26.2498, lng: 127.7356, label: '【路線 C】PARCO CITY', url: 'https://maps.app.goo.gl/kapmkTsQvwE7XTbN8', fill: '#FF8C42' },
+        { n: 'C2', lat: 26.1697, lng: 127.6578, label: '【路線 C】ASHIBINAA Outlet', url: 'https://maps.app.goo.gl/18vT41R8GX5xvN1c7', fill: '#FF8C42' },
+        { n: '◎', lat: 26.2139, lng: 127.6792, label: '國際通（路線 A／B 常經過）', url: 'https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7', fill: '#6B7280' }
+      ],
+      lines: [
+        { latlngs: [[26.217, 127.719], [26.2148, 127.6886], [26.2139, 127.6792]], color: '#2D6A4F', dash: '8 10', weight: 3 },
+        { latlngs: [[26.3026, 127.7659], [26.2247, 127.6979], [26.2139, 127.6792]], color: '#0077B6', dash: '8 10', weight: 3 },
+        { latlngs: [[26.2498, 127.7356], [26.1697, 127.6578]], color: '#FF8C42', dash: '8 10', weight: 3 }
+      ]
+    },
+    day4: {
+      markers: [
+        { n: 1, lat: 26.2182, lng: 127.6733, label: '波之上神宮', url: 'https://maps.app.goo.gl/LGKiPsZ3WQAY95d36', fill: '#023E8A' },
+        { n: 2, lat: 26.1697, lng: 127.6578, label: 'ASHIBINAA Outlet', url: 'https://maps.app.goo.gl/18vT41R8GX5xvN1c7', fill: '#0077B6' },
+        { n: 3, lat: 26.158, lng: 127.6605, label: '瀨長島 Umikaji Terrace', url: 'https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA', fill: '#2D6A4F' },
+        { n: 4, lat: 26.196, lng: 127.6461, label: '那霸空港（回程）', url: 'https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6', fill: '#FF6B6B' }
+      ],
+      lines: [
+        { latlngs: [[26.2182, 127.6733], [26.1697, 127.6578], [26.158, 127.6605], [26.196, 127.6461]], color: '#0077B6', dash: '10 12', weight: 3 }
+      ]
+    }
+  };
+
+  const mapInstances = {};
+
+  function buildMap(dayId) {
+    const cfg = DAY_MAPS[dayId];
+    const el = document.getElementById('map-' + dayId);
+    if (!cfg || !el || mapInstances[dayId]) return;
+
+    const map = L.map(el, { scrollWheelZoom: false, attributionControl: true });
+    L.tileLayer(OSM, { attribution: OSM_ATTR, maxZoom: 19 }).addTo(map);
+
+    const bounds = [];
+    cfg.markers.forEach((m) => {
+      const icon = numIcon(m.n, m.fill);
+      const mk = L.marker([m.lat, m.lng], { icon }).addTo(map);
+      mk.bindPopup(mapPopup(m.label, m.url));
+      bounds.push([m.lat, m.lng]);
+    });
+
+    (cfg.lines || []).forEach((ln) => {
+      L.polyline(ln.latlngs.map((c) => [c[0], c[1]]), {
+        color: ln.color,
+        weight: ln.weight || 3,
+        opacity: 0.82,
+        dashArray: ln.dash
+      }).addTo(map);
+    });
+
+    map.fitBounds(bounds, { padding: [36, 36], maxZoom: dayId === 'day1' ? 8 : 12 });
+    mapInstances[dayId] = map;
+  }
+
+  function refreshMap(dayId) {
+    const m = mapInstances[dayId];
+    if (m) requestAnimationFrame(() => { m.invalidateSize(); });
+  }
+
+  window.initOkinawaDayMap = function (dayId) {
+    if (!DAY_MAPS[dayId]) return;
+    if (mapInstances[dayId]) {
+      refreshMap(dayId);
+      return;
+    }
+    buildMap(dayId);
+    setTimeout(() => refreshMap(dayId), 120);
+  };
+
+  window.addEventListener('resize', () => {
+    Object.keys(mapInstances).forEach((id) => refreshMap(id));
+  });
+})();
+</script>
 <script>
 // Default checklist items
 const defaultChecklists = {
@@ -1327,6 +1562,9 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
     document.querySelectorAll('.day-section, .analysis-section').forEach(s => s.classList.remove('active'));
     const el = document.getElementById(target);
     if (el) el.classList.add('active');
+    if (/^day[1-4]$/.test(target)) {
+      setTimeout(() => window.initOkinawaDayMap(target), 80);
+    }
   });
 });
 
