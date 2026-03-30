@@ -190,14 +190,29 @@ body {
 /* Flight info bar */
 .flight-bar {
   background: var(--white);
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  position: relative;
+  z-index: 5;
+}
+
+.flight-bar-flights {
   display: flex;
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  position: relative;
-  z-index: 5;
+  width: 100%;
+}
+
+.flight-item--agency {
+  width: 100%;
+  max-width: 24rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-light);
 }
 
 .flight-item {
@@ -229,12 +244,11 @@ body {
 }
 
 .flight-tz-note {
-  flex-basis: 100%;
   width: 100%;
   text-align: center;
   font-size: 0.75rem;
   color: var(--gray);
-  padding: 0 1rem 1rem;
+  padding: 0.6rem 1rem 1rem;
   line-height: 1.5;
   max-width: 42rem;
   margin: 0 auto;
@@ -915,7 +929,8 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
-  .flight-bar { gap: 1.5rem; padding: 1rem; }
+  .flight-bar { padding: 1rem 1rem 0.25rem; }
+  .flight-bar-flights { gap: 1.5rem; }
   .flight-item .value { font-size: 0.95rem; }
   .main { padding: 1.5rem 0.8rem 4rem; }
   .timeline { padding-left: 2rem; }
@@ -1011,17 +1026,19 @@ a.place-map:hover {
 
 <!-- Flight bar -->
 <div class="flight-bar">
-  <div class="flight-item">
-    <div class="label">去程</div>
-    <div class="value">JX312 16:40→19:10</div>
-    <span class="flight-duration">飛行約 1 小時 30 分</span>
+  <div class="flight-bar-flights">
+    <div class="flight-item">
+      <div class="label">去程</div>
+      <div class="value">JX312 16:40→19:10</div>
+      <span class="flight-duration">飛行約 1 小時 30 分</span>
+    </div>
+    <div class="flight-item">
+      <div class="label">回程</div>
+      <div class="value">JX313 20:10→20:50</div>
+      <span class="flight-duration">飛行約 1 小時 40 分</span>
+    </div>
   </div>
-  <div class="flight-item">
-    <div class="label">回程</div>
-    <div class="value">JX313 20:10→20:50</div>
-    <span class="flight-duration">飛行約 1 小時 40 分</span>
-  </div>
-  <div class="flight-item">
+  <div class="flight-item flight-item--agency">
     <div class="label">旅行社</div>
     <div class="value"><a class="place-map" href="https://www.fifitour.com.tw/" target="_blank" rel="noopener noreferrer">大聲旅行社</a></div>
   </div>
