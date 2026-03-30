@@ -180,6 +180,15 @@ body {
   color: var(--ocean-deep);
 }
 
+.flight-item .flight-duration {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray);
+}
+
 .flight-tz-note {
   flex-basis: 100%;
   width: 100%;
@@ -727,16 +736,18 @@ body {
   <div class="flight-item">
     <div class="label">去程</div>
     <div class="value">JX312 16:40→19:10</div>
+    <span class="flight-duration">飛行約 1 小時 30 分</span>
   </div>
   <div class="flight-item">
     <div class="label">回程</div>
     <div class="value">JX313 20:10→20:50</div>
+    <span class="flight-duration">飛行約 1 小時 40 分</span>
   </div>
   <div class="flight-item">
     <div class="label">旅行社</div>
     <div class="value">大聲旅行社</div>
   </div>
-  <p class="flight-tz-note">※ 班表皆為各機場<strong>當地時間</strong>。那霸屬日本時間（比台灣快 1 小時），JX313 實際飛行約 1 小時 40 分，並非 40 分鐘。</p>
+  <p class="flight-tz-note">※ 起降表定時間為各機場<strong>當地時間</strong>（沖繩比台灣快 1 小時）；上方「飛行約⋯」為換算後實際航程，班表仍以航空公司為準。</p>
 </div>
 
 <!-- Nav tabs -->
@@ -814,7 +825,7 @@ body {
           <li>第一天傍晚才到，等於只剩晚上</li>
           <li>第三天午晚餐自理，帶小孩要先想好</li>
           <li>8月沖繩很熱，注意防曬補水</li>
-          <li>回程20:10起飛，小孩可能很累</li>
+          <li>回程 20:10 那霸起飛、飛行約 1 小時 40 分，小孩可能很累</li>
         </ul>
       </div>
     </div>
@@ -846,7 +857,7 @@ body {
         <div class="card">
           <span class="card-type spot">✈️ 交通</span>
           <h3>台中機場集合 → 搭乘星宇 JX312</h3>
-          <p>16:40 起飛，19:10 抵達那霸空港。提前2小時到機場辦理手續，帶小孩建議再早半小時。</p>
+          <p>16:40 台中起飛，19:10 那霸當地抵達，飛行約 1 小時 30 分。提前 2 小時到機場辦理手續，帶小孩建議再早半小時。</p>
           <div class="card-tags">
             <span class="card-tag kid">👶 帶推車可到登機門</span>
           </div>
@@ -1136,7 +1147,7 @@ body {
         <div class="card">
           <span class="card-type spot">✈️ 回程</span>
           <h3>那霸空港 → 台中 (JX313)</h3>
-          <p>20:10 那霸當地起飛，20:50 台中當地抵達（兩地時差 1 小時，航程約 1 小時 40 分）。建議提前在瀨長島或機場商店街買完最後的伴手禮。</p>
+          <p>20:10 那霸當地起飛，20:50 台中當地抵達，飛行約 1 小時 40 分。建議提前在瀨長島或機場商店街買完最後的伴手禮。</p>
           <div class="card-tags">
             <span class="card-tag kid">👶 小孩可能很累，準備小毯子</span>
           </div>
