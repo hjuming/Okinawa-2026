@@ -488,9 +488,18 @@ body {
   color: var(--ocean);
   font-weight: 600;
   display: flex;
-  align-items: center;
-  gap: 0.3rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
   margin-bottom: 0.4rem;
+}
+
+.note-area .note-hint {
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.45;
+  max-width: 100%;
 }
 
 .note-area textarea {
@@ -962,7 +971,7 @@ a.place-map:hover {
             <span class="card-tag kid">👶 帶推車可到登機門</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d1-flight" placeholder="例：記得帶兒童護照、抵達後先換日幣..."></textarea>
           </div>
         </div>
@@ -975,7 +984,7 @@ a.place-map:hover {
           <h3>沖繩豬肉蛋飯糰</h3>
           <p>抵達後發送沖繩必吃招牌小吃！機上也有簡易餐食。</p>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d1-food" placeholder="小孩吃不吃得慣？要不要另外準備..."></textarea>
           </div>
         </div>
@@ -992,7 +1001,7 @@ a.place-map:hover {
             <span class="card-tag kid">👶 問有無嬰兒床</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d1-hotel" placeholder="確認飯店名稱、地址..."></textarea>
           </div>
         </div>
@@ -1005,7 +1014,7 @@ a.place-map:hover {
           <h3>自由探訪便利商店、沖繩超市</h3>
           <p>到飯店安頓好後可以帶小孩到附近超市和便利商店逛逛，買些飲料零食。沖繩超市有很多當地限定商品。</p>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d1-free" placeholder="想去哪間超市？要買什麼？"></textarea>
           </div>
         </div>
@@ -1050,7 +1059,7 @@ a.place-map:hover {
             <span class="card-tag">📷 拍照重點</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d2-aqua" placeholder="海豚秀時間、想買什麼紀念品..."></textarea>
           </div>
         </div>
@@ -1068,7 +1077,7 @@ a.place-map:hover {
             <span class="card-tag">🍍 鳳梨伴手禮</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d2-pine" placeholder="想買鳳梨相關伴手禮？..."></textarea>
           </div>
         </div>
@@ -1085,7 +1094,7 @@ a.place-map:hover {
             <span class="card-tag">🎒 土產伴手禮</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d2-kokusai" placeholder="想逛哪些店、想買什麼..."></textarea>
           </div>
         </div>
@@ -1150,7 +1159,7 @@ a.place-map:hover {
             <span class="card-tag kid">🏯 世界遺產教育意義</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d3-routeA" placeholder="要走這條路線嗎？"></textarea>
           </div>
         </div>
@@ -1163,7 +1172,7 @@ a.place-map:hover {
           <h3>購物休閒：<a class="place-map" href="https://maps.app.goo.gl/wfV52WwLwcMhLSUR7" target="_blank" rel="noopener noreferrer">AEON MALL Okinawa Rycom</a> → <a class="place-map" href="https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7" target="_blank" rel="noopener noreferrer">新都心</a> → <a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></h3>
           <p>適合想輕鬆購物的家庭。AEON 有超市和兒童遊樂區，新都心有 DFS 免稅店。</p>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d3-routeB" placeholder="想去哪些店？"></textarea>
           </div>
         </div>
@@ -1176,7 +1185,7 @@ a.place-map:hover {
           <h3>購物狂：<a class="place-map" href="https://maps.app.goo.gl/fQJ9r5263PZn8Fnq8" target="_blank" rel="noopener noreferrer">浦添西海岸</a> <a class="place-map" href="https://maps.app.goo.gl/kapmkTsQvwE7XTbN8" target="_blank" rel="noopener noreferrer">PARCO CITY</a> / <a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">ASHIBINAA Outlet</a></h3>
           <p>需搭計程車或巴士。<a class="place-map" href="https://maps.app.goo.gl/kapmkTsQvwE7XTbN8" target="_blank" rel="noopener noreferrer">PARCO CITY</a>很大有兒童區，ASHIBINAA有超過100個品牌。</p>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d3-routeC" placeholder="交通方式、預算..."></textarea>
           </div>
         </div>
@@ -1230,7 +1239,7 @@ a.place-map:hover {
             <span class="card-tag">📷 斷崖海景超美</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d4-shrine" placeholder="想求什麼御守？"></textarea>
           </div>
         </div>
@@ -1243,7 +1252,7 @@ a.place-map:hover {
           <h3><a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">ASHIBINAA Outlet</a></h3>
           <p>超過100家世界品牌進駐的Outlet購物城，COACH、MARC JACOBS等精品以折扣價入手。最後的購物衝刺機會！</p>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d4-outlet" placeholder="想買什麼品牌？預算？"></textarea>
           </div>
         </div>
@@ -1260,7 +1269,7 @@ a.place-map:hover {
             <span class="card-tag">⚠️ 階梯多注意幼兒</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d4-senaga" placeholder="想在這裡吃什麼？"></textarea>
           </div>
         </div>
@@ -1276,7 +1285,7 @@ a.place-map:hover {
             <span class="card-tag kid">👶 小孩可能很累，準備小毯子</span>
           </div>
           <div class="note-area">
-            <label>📝 我的筆記</label>
+            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
             <textarea data-key="d4-return" placeholder="機場還想買什麼？"></textarea>
           </div>
         </div>
