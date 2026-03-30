@@ -240,22 +240,38 @@ body {
   margin: 0 auto;
 }
 
-/* Navigation tabs */
+/* Navigation tabs（第一列：分析／打包；第二列：四天） */
 .nav-tabs {
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--white);
   display: flex;
-  overflow-x: auto;
+  flex-direction: column;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  -webkit-overflow-scrolling: touch;
+}
+
+.nav-tabs-row {
+  display: flex;
+  width: 100%;
+}
+
+.nav-tabs-row--days {
+  border-top: 1px solid var(--gray-light);
+}
+
+.nav-tabs-row--tools .nav-tab {
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-tabs-row--days .nav-tab {
+  flex: 1;
+  min-width: 0;
 }
 
 .nav-tab {
-  flex: 1;
-  min-width: 80px;
-  padding: 1rem 0.5rem;
+  padding: 0.85rem 0.35rem;
   text-align: center;
   cursor: pointer;
   border: none;
@@ -283,9 +299,19 @@ body {
 .nav-tab .day-num {
   display: block;
   font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 900;
   margin-bottom: 0.2rem;
+}
+
+@media (max-width: 380px) {
+  .nav-tab {
+    font-size: 0.78rem;
+    padding: 0.75rem 0.2rem;
+  }
+  .nav-tab .day-num {
+    font-size: 1.15rem;
+  }
 }
 
 /* Main content */
@@ -1004,24 +1030,28 @@ a.place-map:hover {
 
 <!-- Nav tabs -->
 <nav class="nav-tabs" id="navTabs">
-  <button class="nav-tab active" data-target="analysis">
-    <span class="day-num">📊</span>分析
-  </button>
-  <button class="nav-tab" data-target="day1">
-    <span class="day-num">1</span>8/19
-  </button>
-  <button class="nav-tab" data-target="day2">
-    <span class="day-num">2</span>8/20
-  </button>
-  <button class="nav-tab" data-target="day3">
-    <span class="day-num">3</span>8/21
-  </button>
-  <button class="nav-tab" data-target="day4">
-    <span class="day-num">4</span>8/22
-  </button>
-  <button class="nav-tab" data-target="checklist">
-    <span class="day-num">✅</span>打包
-  </button>
+  <div class="nav-tabs-row nav-tabs-row--tools">
+    <button type="button" class="nav-tab active" data-target="analysis">
+      <span class="day-num">📊</span>分析
+    </button>
+    <button type="button" class="nav-tab" data-target="checklist">
+      <span class="day-num">✅</span>打包
+    </button>
+  </div>
+  <div class="nav-tabs-row nav-tabs-row--days">
+    <button type="button" class="nav-tab" data-target="day1">
+      <span class="day-num">1</span>8/19
+    </button>
+    <button type="button" class="nav-tab" data-target="day2">
+      <span class="day-num">2</span>8/20
+    </button>
+    <button type="button" class="nav-tab" data-target="day3">
+      <span class="day-num">3</span>8/21
+    </button>
+    <button type="button" class="nav-tab" data-target="day4">
+      <span class="day-num">4</span>8/22
+    </button>
+  </div>
 </nav>
 
 <div class="main">
