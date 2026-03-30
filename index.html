@@ -376,6 +376,12 @@ body {
   color: var(--dark);
 }
 
+.card h3 a.place-map {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
 .card p {
   font-size: 0.9rem;
   color: var(--gray);
@@ -707,6 +713,21 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* 行程地點 → Google Maps */
+a.place-map {
+  color: var(--ocean);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+a.place-map:hover {
+  color: var(--ocean-deep);
+}
+.hero-tag a.place-map {
+  color: var(--white);
+  font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -720,7 +741,7 @@ body {
       <span>2026.08.19 — 08.22 ✈ 星宇航空</span>
     </h1>
     <div class="hero-meta">
-      <span class="hero-tag">🛫 台中出發</span>
+      <span class="hero-tag">🛫 <a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a>出發</span>
       <span class="hero-tag">👨‍👩‍👧‍👦 親子行程</span>
       <span class="hero-tag">🚫 不走購物站</span>
       <span class="hero-tag">4天3夜</span>
@@ -815,7 +836,7 @@ body {
       <div class="pro-con">
         <ul class="pro-list">
           <li>全程不走購物站，親子友善</li>
-          <li>水族館+恐龍公園+鳳梨車，孩子超愛</li>
+          <li><a class="place-map" href="https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7" target="_blank" rel="noopener noreferrer">水族館</a>+恐龍公園+<a class="place-map" href="https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8" target="_blank" rel="noopener noreferrer">鳳梨園</a>，孩子超愛</li>
           <li>第三天全日自由活動＋電車券，超彈性</li>
           <li>星宇航空服務品質好</li>
           <li>不走免稅店不浪費時間</li>
@@ -825,7 +846,7 @@ body {
           <li>第一天傍晚才到，等於只剩晚上</li>
           <li>第三天午晚餐自理，帶小孩要先想好</li>
           <li>8月沖繩很熱，注意防曬補水</li>
-          <li>回程 20:10 那霸起飛、飛行約 1 小時 40 分，小孩可能很累</li>
+          <li>回程 20:10 <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸</a>起飛、飛行約 1 小時 40 分，小孩可能很累</li>
         </ul>
       </div>
     </div>
@@ -833,11 +854,11 @@ body {
     <div class="tips-panel">
       <h3>💡 帶小孩的實用建議</h3>
       <ul>
-        <li>水族館建議先看海豚秀時間表，提早卡位</li>
+        <li><a class="place-map" href="https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7" target="_blank" rel="noopener noreferrer">水族館</a>建議先看海豚秀時間表，提早卡位</li>
         <li>第三天自由活動推薦搭電車去首里城，小孩可以體驗沖繩歷史</li>
-        <li>隨身帶輕便推車，鳳梨園和Outlet範圍都很大</li>
-        <li>國際通的第一牧志公設市場二樓有親子友善餐廳</li>
-        <li>瀨長島適合拍照但階梯多，帶幼兒要注意</li>
+        <li>隨身帶輕便推車，<a class="place-map" href="https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8" target="_blank" rel="noopener noreferrer">鳳梨園</a>和<a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">Outlet</a>範圍都很大</li>
+        <li><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a>的第一牧志公設市場二樓有親子友善餐廳</li>
+        <li><a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島</a>適合拍照但階梯多，帶幼兒要注意</li>
         <li>便利商店的兒童飲料和零食選擇很多，可當補給站</li>
       </ul>
     </div>
@@ -848,7 +869,7 @@ body {
     <div class="day-header">
       <div class="day-date">2026年8月19日（三）</div>
       <div class="day-title">出發！飛向沖繩</div>
-      <div class="day-subtitle">台中機場 → 那霸空港</div>
+      <div class="day-subtitle"><a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a> → <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></div>
     </div>
 
     <div class="timeline">
@@ -856,8 +877,8 @@ body {
         <div class="timeline-dot spot"></div>
         <div class="card">
           <span class="card-type spot">✈️ 交通</span>
-          <h3>台中機場集合 → 搭乘星宇 JX312</h3>
-          <p>16:40 台中起飛，19:10 那霸當地抵達，飛行約 1 小時 30 分。提前 2 小時到機場辦理手續，帶小孩建議再早半小時。</p>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a>集合 → 搭乘星宇 JX312</h3>
+          <p>16:40 <a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a>起飛，19:10 <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a>當地抵達，飛行約 1 小時 30 分。提前 2 小時到機場辦理手續，帶小孩建議再早半小時。</p>
           <div class="card-tags">
             <span class="card-tag kid">👶 帶推車可到登機門</span>
           </div>
@@ -886,7 +907,7 @@ body {
         <div class="card">
           <span class="card-type hotel">🏨 住宿</span>
           <h3>那霸市區飯店</h3>
-          <p>Hotel Azat / 南西觀光 / Community & Spa 中央酒店(別館) / Hotel Lantana / 沖繩RJ 或同級</p>
+          <p><a class="place-map" href="https://maps.app.goo.gl/1aTooC6jyBXeztBK8" target="_blank" rel="noopener noreferrer">Hotel Azat</a> / <a class="place-map" href="https://maps.app.goo.gl/gecKfrw46ZyWGzU6A" target="_blank" rel="noopener noreferrer">南西觀光</a> / <a class="place-map" href="https://maps.app.goo.gl/cXUhFHVBLrknKvWB9" target="_blank" rel="noopener noreferrer">Community &amp; Spa 中央酒店(別館)</a> / <a class="place-map" href="https://maps.app.goo.gl/i4gZzwtj7GyCQ5q97" target="_blank" rel="noopener noreferrer">Hotel Lantana</a> / <a class="place-map" href="https://maps.app.goo.gl/xmenL6AR6Sxz78BTA" target="_blank" rel="noopener noreferrer">沖繩RJ</a> 或同級</p>
           <div class="card-tags">
             <span class="card-tag">⚠️ 確認實際入住哪間</span>
             <span class="card-tag kid">👶 問有無嬰兒床</span>
@@ -926,7 +947,7 @@ body {
     <div class="day-header">
       <div class="day-date">2026年8月20日（四）</div>
       <div class="day-title">水族館 × 恐龍公園 大冒險</div>
-      <div class="day-subtitle">沖繩北部探索 → 那霸國際通</div>
+      <div class="day-subtitle">沖繩北部探索 → 那霸<a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></div>
     </div>
 
     <div class="timeline">
@@ -934,7 +955,7 @@ body {
         <div class="timeline-dot spot"></div>
         <div class="card">
           <span class="card-type spot">🐬 景點</span>
-          <h3>海洋博公園 ＆ 美麗海水族館</h3>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/NKXiLebxi3aaK5aNA" target="_blank" rel="noopener noreferrer">海洋博公園</a> ＆ <a class="place-map" href="https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7" target="_blank" rel="noopener noreferrer">美麗海水族館</a></h3>
           <p>全球大規模水族館之一，650種約75,000隻海洋生物。依海洋深度分層展示，還有精彩的海豚表演秀！可以眺望珊瑚七色海。</p>
           <div class="card-tags">
             <span class="card-tag kid">🐠 小孩必看黑潮之海</span>
@@ -952,7 +973,7 @@ body {
         <div class="timeline-dot spot"></div>
         <div class="card">
           <span class="card-type spot">🦕 景點</span>
-          <h3>名護鳳梨園（含恐龍公園）</h3>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8" target="_blank" rel="noopener noreferrer">名護鳳梨園（含恐龍公園）</a></h3>
           <p>超可愛無人鳳梨造型駕使車、充滿綠意的園區，還有新加入的恐龍公園與質感酒莊。大人小孩都能玩得開心！最後可品嚐新鮮鳳梨。</p>
           <div class="card-tags">
             <span class="card-tag kid">🚗 鳳梨車超可愛</span>
@@ -970,7 +991,7 @@ body {
         <div class="timeline-dot free"></div>
         <div class="card">
           <span class="card-type free">🛍️ 自由活動</span>
-          <h3>國際通大道逛街</h3>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通大道</a>逛街</h3>
           <p>全長1.6公里的「奇蹟大街」，百貨、餐廳、土特產店林立。帶小孩可以逛逛牧志公設市場，體驗沖繩在地文化。</p>
           <div class="card-tags">
             <span class="card-tag kid">🍦 有很多小吃攤</span>
@@ -1014,9 +1035,9 @@ body {
     <div class="tips-panel">
       <h3>🎫 電車一日券可以去的地方</h3>
       <ul>
-        <li>國際通大道 — 各電車站下車都可逛</li>
-        <li>新都心 — DFS、天久樂市商場</li>
-        <li>小祿站 — 那霸AEON購物中心</li>
+        <li><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通大道</a> — 各電車站下車都可逛</li>
+        <li><a class="place-map" href="https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7" target="_blank" rel="noopener noreferrer">新都心</a> — DFS、天久樂市商場</li>
+        <li>小祿站 — <a class="place-map" href="https://maps.app.goo.gl/wfV52WwLwcMhLSUR7" target="_blank" rel="noopener noreferrer">那霸 AEON MALL Okinawa Rycom</a></li>
         <li>首里站 — 首里城公園（世界文化遺產）</li>
         <li>安里站 — 榮町市場（懷舊商圈）</li>
         <li>牧志站 — 市場本通（沖繩人的廚房）</li>
@@ -1028,7 +1049,7 @@ body {
         <div class="timeline-dot free"></div>
         <div class="card">
           <span class="card-type free">🎯 推薦路線 A</span>
-          <h3>文化探索：首里城 → 榮町市場 → 國際通</h3>
+          <h3>文化探索：首里城 → 榮町市場 → <a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></h3>
           <p>適合想帶小孩認識沖繩歷史的家庭。首里城公園範圍大但有平坦步道，榮町市場可以體驗在地生活感。</p>
           <div class="card-tags">
             <span class="card-tag kid">🏯 世界遺產教育意義</span>
@@ -1044,8 +1065,8 @@ body {
         <div class="timeline-dot free"></div>
         <div class="card">
           <span class="card-type free">🎯 推薦路線 B</span>
-          <h3>購物休閒：AEON → 新都心 → 國際通</h3>
-          <p>適合想輕鬆購物的家庭。AEON有超市和兒童遊樂區，新都心有DFS免稅店。</p>
+          <h3>購物休閒：<a class="place-map" href="https://maps.app.goo.gl/wfV52WwLwcMhLSUR7" target="_blank" rel="noopener noreferrer">AEON MALL Okinawa Rycom</a> → <a class="place-map" href="https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7" target="_blank" rel="noopener noreferrer">新都心</a> → <a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></h3>
+          <p>適合想輕鬆購物的家庭。AEON 有超市和兒童遊樂區，新都心有 DFS 免稅店。</p>
           <div class="note-area">
             <label>📝 我的筆記</label>
             <textarea data-key="d3-routeB" placeholder="想去哪些店？"></textarea>
@@ -1057,7 +1078,7 @@ body {
         <div class="timeline-dot free"></div>
         <div class="card">
           <span class="card-type free">🎯 推薦路線 C</span>
-          <h3>購物狂：浦添西海岸 PARCO CITY / ASHIBINAA Outlet</h3>
+          <h3>購物狂：<a class="place-map" href="https://maps.app.goo.gl/fQJ9r5263PZn8Fnq8" target="_blank" rel="noopener noreferrer">浦添西海岸</a> PARCO CITY / <a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">ASHIBINAA Outlet</a></h3>
           <p>需搭計程車或巴士。PARCO CITY很大有兒童區，ASHIBINAA有超過100個品牌。</p>
           <div class="note-area">
             <label>📝 我的筆記</label>
@@ -1081,7 +1102,7 @@ body {
       <div class="meal-card" style="border:2px dashed var(--coral)">
         <div class="meal-type" style="color:var(--coral)">晚餐 ⚠️</div>
         <div class="meal-name">自理</div>
-        <div class="meal-price">國際通選擇很多</div>
+        <div class="meal-price"><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a>選擇很多</div>
       </div>
     </div>
   </div>
@@ -1091,7 +1112,7 @@ body {
     <div class="day-header">
       <div class="day-date">2026年8月22日（六）</div>
       <div class="day-title">最後衝刺＆回家</div>
-      <div class="day-subtitle">波上神宮 → Outlet → 瀨長島 → 那霸空港</div>
+      <div class="day-subtitle"><a class="place-map" href="https://maps.app.goo.gl/LGKiPsZ3WQAY95d36" target="_blank" rel="noopener noreferrer">波之上神宮</a> → <a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">Outlet</a> → <a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島</a> → <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></div>
     </div>
 
     <div class="timeline">
@@ -1099,7 +1120,7 @@ body {
         <div class="timeline-dot spot"></div>
         <div class="card">
           <span class="card-type spot">⛩️ 景點</span>
-          <h3>波之上神宮</h3>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/LGKiPsZ3WQAY95d36" target="_blank" rel="noopener noreferrer">波之上神宮</a></h3>
           <p>佇立於海邊斷崖的琉球第一神社，在琉球八社中排名第一。也是那霸市史蹟文化遺產。可以帶小孩體驗日式參拜文化。</p>
           <div class="card-tags">
             <span class="card-tag kid">⛩️ 可以求御守當紀念</span>
@@ -1116,7 +1137,7 @@ body {
         <div class="timeline-dot free"></div>
         <div class="card">
           <span class="card-type spot">🛍️ 購物</span>
-          <h3>ASHIBINAA Outlet</h3>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">ASHIBINAA Outlet</a></h3>
           <p>超過100家世界品牌進駐的Outlet購物城，COACH、MARC JACOBS等精品以折扣價入手。最後的購物衝刺機會！</p>
           <div class="note-area">
             <label>📝 我的筆記</label>
@@ -1129,7 +1150,7 @@ body {
         <div class="timeline-dot spot"></div>
         <div class="card">
           <span class="card-type spot">🏝️ 景點</span>
-          <h3>瀨長島 Umikaji Terrace</h3>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島 Umikaji Terrace</a></h3>
           <p>小希臘風情的白色建築群，結合美食、遊樂、療癒的島嶼度假村。距離機場僅15分鐘，是最後放鬆的好去處。</p>
           <div class="card-tags">
             <span class="card-tag kid">📷 白色建築超好拍</span>
@@ -1146,8 +1167,8 @@ body {
         <div class="timeline-dot spot"></div>
         <div class="card">
           <span class="card-type spot">✈️ 回程</span>
-          <h3>那霸空港 → 台中 (JX313)</h3>
-          <p>20:10 那霸當地起飛，20:50 台中當地抵達，飛行約 1 小時 40 分。建議提前在瀨長島或機場商店街買完最後的伴手禮。</p>
+          <h3><a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a> → <a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a> (JX313)</h3>
+          <p>20:10 那霸當地起飛，20:50 台中當地抵達，飛行約 1 小時 40 分。建議提前在<a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島</a>或<a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a>商店街買完最後的伴手禮。</p>
           <div class="card-tags">
             <span class="card-tag kid">👶 小孩可能很累，準備小毯子</span>
           </div>
