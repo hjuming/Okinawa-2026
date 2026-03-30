@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 沖繩親子冒險 旅遊手冊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ocean: #0077B6;
+  --ocean-deep: #023E8A;
+  --ocean-light: #90E0EF;
+  --sand: #F4E8C1;
+  --sand-light: #FFF8E7;
+  --coral: #FF6B6B;
+  --coral-soft: #FFADAD;
+  --palm: #2D6A4F;
+  --palm-light: #95D5B2;
+  --sunset: #FF8C42;
+  --sky: #CAF0F8;
+  --white: #FFFFFF;
+  --dark: #1B2838;
+  --gray: #6B7280;
+  --gray-light: #E5E7EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--sky);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--ocean-deep) 0%, var(--ocean) 40%, var(--ocean-light) 70%, var(--sky) 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z' fill='%23CAF0F8'/%3E%3C/svg%3E");
+  background-size: cover;
+  z-index: 2;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 3;
+  padding: 2rem;
+  animation: fadeUp 1s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-emoji {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.hero h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  color: var(--white);
+  font-weight: 900;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 span {
+  display: block;
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  opacity: 0.85;
+  margin-top: 0.5rem;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.hero-tag {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Flight info bar */
+.flight-bar {
+  background: var(--white);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  position: relative;
+  z-index: 5;
+}
+
+.flight-item {
+  text-align: center;
+}
+
+.flight-item .label {
+  font-size: 0.75rem;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+
+.flight-item .value {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ocean-deep);
+}
+
+/* Navigation tabs */
+.nav-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  display: flex;
+  overflow-x: auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-tab {
+  flex: 1;
+  min-width: 80px;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray);
+  transition: all 0.3s;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.nav-tab.active {
+  color: var(--ocean);
+  border-bottom-color: var(--ocean);
+  font-weight: 700;
+}
+
+.nav-tab:hover {
+  color: var(--ocean);
+  background: var(--sky);
+}
+
+.nav-tab .day-num {
+  display: block;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+}
+
+/* Main content */
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem 6rem;
+}
+
+/* Day sections */
+.day-section {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.day-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.day-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+}
+
+.day-date {
+  font-size: 0.85rem;
+  color: var(--ocean);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.day-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+.day-subtitle {
+  color: var(--gray);
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ocean-light), var(--coral-soft), var(--palm-light));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -1.85rem;
+  top: 0.3rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--ocean);
+  z-index: 2;
+}
+
+.timeline-dot.spot { background: var(--ocean); }
+.timeline-dot.food { background: var(--sunset); box-shadow: 0 0 0 2px var(--sunset); }
+.timeline-dot.hotel { background: var(--palm); box-shadow: 0 0 0 2px var(--palm); }
+.timeline-dot.free { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
+
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.card-type {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.7rem;
+  border-radius: 50px;
+  margin-bottom: 0.6rem;
+}
+
+.card-type.spot { background: var(--sky); color: var(--ocean-deep); }
+.card-type.food { background: #FFF3E0; color: #E65100; }
+.card-type.hotel { background: #E8F5E9; color: #2E7D32; }
+.card-type.free { background: #FCE4EC; color: #C62828; }
+.card-type.gift { background: #F3E5F5; color: #6A1B9A; }
+
+.card h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.card-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+
+.card-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: var(--gray-light);
+  color: var(--gray);
+}
+
+.card-tag.kid { background: #E3F2FD; color: #1565C0; }
+
+/* Notes area */
+.note-area {
+  margin-top: 1rem;
+  border-top: 1px dashed var(--gray-light);
+  padding-top: 0.8rem;
+}
+
+.note-area label {
+  font-size: 0.75rem;
+  color: var(--ocean);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.note-area textarea {
+  width: 100%;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 0.85rem;
+  resize: vertical;
+  min-height: 60px;
+  transition: border-color 0.2s;
+  color: var(--dark);
+  background: var(--sand-light);
+}
+
+.note-area textarea:focus {
+  outline: none;
+  border-color: var(--ocean);
+  background: var(--white);
+}
+
+/* Tips panel */
+.tips-panel {
+  background: linear-gradient(135deg, var(--sand-light), var(--white));
+  border: 1px solid var(--sand);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.tips-panel h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.1rem;
+  color: var(--sunset);
+  margin-bottom: 0.8rem;
+}
+
+.tips-panel ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tips-panel li {
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+  color: var(--dark);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.tips-panel li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--sunset);
+}
+
+/* Checklist */
+.checklist {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin: 2rem 0;
+}
+
+.checklist h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--gray-light);
+  cursor: pointer;
+  user-select: none;
+}
+
+.check-item:last-child { border-bottom: none; }
+
+.check-item input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--ocean);
+  cursor: pointer;
+}
+
+.check-item span {
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.check-item input:checked + span {
+  text-decoration: line-through;
+  color: var(--gray);
+}
+
+.add-item-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.add-item-row input {
+  flex: 1;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 0.85rem;
+}
+
+.add-item-row input:focus {
+  outline: none;
+  border-color: var(--ocean);
+}
+
+.add-btn {
+  background: var(--ocean);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-btn:hover { background: var(--ocean-deep); }
+
+/* Meal summary */
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.meal-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.meal-card .meal-type {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sunset);
+  margin-bottom: 0.3rem;
+}
+
+.meal-card .meal-name {
+  font-size: 0.9rem;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.meal-card .meal-price {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-top: 0.2rem;
+}
+
+/* Analysis section */
+.analysis-section {
+  display: none;
+}
+.analysis-section.active { display: block; }
+
+.analysis-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom: 1.5rem;
+}
+
+.analysis-card h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.15rem;
+  color: var(--ocean-deep);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ocean-light);
+}
+
+.pro-con {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .pro-con { grid-template-columns: 1fr; }
+}
+
+.pro-list, .con-list {
+  padding: 0;
+  list-style: none;
+}
+
+.pro-list li, .con-list li {
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.pro-list li::before { content: '👍'; position: absolute; left: 0; }
+.con-list li::before { content: '⚠️'; position: absolute; left: 0; }
+
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0.6rem 0;
+}
+
+.score-label {
+  font-size: 0.85rem;
+  min-width: 80px;
+  color: var(--dark);
+}
+
+.score-track {
+  flex: 1;
+  height: 8px;
+  background: var(--gray-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease;
+}
+
+.score-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .flight-bar { gap: 1.5rem; padding: 1rem; }
+  .flight-item .value { font-size: 0.95rem; }
+  .main { padding: 1.5rem 0.8rem 4rem; }
+  .timeline { padding-left: 2rem; }
+  .hero h1 { font-size: 2rem; }
+  .pro-con { grid-template-columns: 1fr; }
+}
+
+/* Print styles */
+@media print {
+  .nav-tabs, .note-area, .add-item-row, .add-btn { display: none; }
+  .day-section { display: block !important; page-break-before: always; }
+  .hero { min-height: auto; padding: 2rem; }
+}
+
+/* Saved indicator */
+.save-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--palm);
+  color: var(--white);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.save-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-emoji">🐠🏖️🦕</div>
+    <h1>
+      沖繩親子冒險
+      <span>2026.08.19 — 08.22 ✈ 星宇航空</span>
+    </h1>
+    <div class="hero-meta">
+      <span class="hero-tag">🛫 台中出發</span>
+      <span class="hero-tag">👨‍👩‍👧‍👦 親子行程</span>
+      <span class="hero-tag">🚫 不走購物站</span>
+      <span class="hero-tag">4天3夜</span>
+    </div>
+  </div>
+</section>
+
+<!-- Flight bar -->
+<div class="flight-bar">
+  <div class="flight-item">
+    <div class="label">去程</div>
+    <div class="value">JX312 16:40→19:10</div>
+  </div>
+  <div class="flight-item">
+    <div class="label">回程</div>
+    <div class="value">JX313 20:10→20:50</div>
+  </div>
+  <div class="flight-item">
+    <div class="label">旅行社</div>
+    <div class="value">大聲旅行社</div>
+  </div>
+</div>
+
+<!-- Nav tabs -->
+<nav class="nav-tabs" id="navTabs">
+  <button class="nav-tab active" data-target="analysis">
+    <span class="day-num">📊</span>分析
+  </button>
+  <button class="nav-tab" data-target="day1">
+    <span class="day-num">1</span>8/19
+  </button>
+  <button class="nav-tab" data-target="day2">
+    <span class="day-num">2</span>8/20
+  </button>
+  <button class="nav-tab" data-target="day3">
+    <span class="day-num">3</span>8/21
+  </button>
+  <button class="nav-tab" data-target="day4">
+    <span class="day-num">4</span>8/22
+  </button>
+  <button class="nav-tab" data-target="checklist">
+    <span class="day-num">✅</span>打包
+  </button>
+</nav>
+
+<div class="main">
+
+  <!-- Analysis -->
+  <div class="analysis-section active" id="analysis">
+    <div class="day-header">
+      <div class="day-date">行程總覽分析</div>
+      <div class="day-title">帶小孩出遊的重點評估</div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>🎯 親子友善度評分</h3>
+      <div class="score-bar">
+        <span class="score-label">景點趣味</span>
+        <div class="score-track"><div class="score-fill" style="width:90%;background:var(--ocean)"></div></div>
+        <span class="score-value" style="color:var(--ocean)">9/10</span>
+      </div>
+      <div class="score-bar">
+        <span class="score-label">行程鬆緊</span>
+        <div class="score-track"><div class="score-fill" style="width:85%;background:var(--palm)"></div></div>
+        <span class="score-value" style="color:var(--palm)">8.5</span>
+      </div>
+      <div class="score-bar">
+        <span class="score-label">餐食安排</span>
+        <div class="score-track"><div class="score-fill" style="width:70%;background:var(--sunset)"></div></div>
+        <span class="score-value" style="color:var(--sunset)">7/10</span>
+      </div>
+      <div class="score-bar">
+        <span class="score-label">飯店位置</span>
+        <div class="score-track"><div class="score-fill" style="width:75%;background:var(--coral)"></div></div>
+        <span class="score-value" style="color:var(--coral)">7.5</span>
+      </div>
+      <div class="score-bar">
+        <span class="score-label">自由度</span>
+        <div class="score-track"><div class="score-fill" style="width:90%;background:var(--ocean-deep)"></div></div>
+        <span class="score-value" style="color:var(--ocean-deep)">9/10</span>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>👍 優點 vs ⚠️ 注意事項</h3>
+      <div class="pro-con">
+        <ul class="pro-list">
+          <li>全程不走購物站，親子友善</li>
+          <li>水族館+恐龍公園+鳳梨車，孩子超愛</li>
+          <li>第三天全日自由活動＋電車券，超彈性</li>
+          <li>星宇航空服務品質好</li>
+          <li>不走免稅店不浪費時間</li>
+        </ul>
+        <ul class="con-list">
+          <li>飯店寫「或同級」，出發前要確認</li>
+          <li>第一天傍晚才到，等於只剩晚上</li>
+          <li>第三天午晚餐自理，帶小孩要先想好</li>
+          <li>8月沖繩很熱，注意防曬補水</li>
+          <li>回程20:10起飛，小孩可能很累</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tips-panel">
+      <h3>💡 帶小孩的實用建議</h3>
+      <ul>
+        <li>水族館建議先看海豚秀時間表，提早卡位</li>
+        <li>第三天自由活動推薦搭電車去首里城，小孩可以體驗沖繩歷史</li>
+        <li>隨身帶輕便推車，鳳梨園和Outlet範圍都很大</li>
+        <li>國際通的第一牧志公設市場二樓有親子友善餐廳</li>
+        <li>瀨長島適合拍照但階梯多，帶幼兒要注意</li>
+        <li>便利商店的兒童飲料和零食選擇很多，可當補給站</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="day-section" id="day1">
+    <div class="day-header">
+      <div class="day-date">2026年8月19日（三）</div>
+      <div class="day-title">出發！飛向沖繩</div>
+      <div class="day-subtitle">台中機場 → 那霸空港</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot spot"></div>
+        <div class="card">
+          <span class="card-type spot">✈️ 交通</span>
+          <h3>台中機場集合 → 搭乘星宇 JX312</h3>
+          <p>16:40 起飛，19:10 抵達那霸空港。提前2小時到機場辦理手續，帶小孩建議再早半小時。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">👶 帶推車可到登機門</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d1-flight" placeholder="例：記得帶兒童護照、抵達後先換日幣..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot food"></div>
+        <div class="card">
+          <span class="card-type gift">🎁 贈送</span>
+          <h3>沖繩豬肉蛋飯糰</h3>
+          <p>抵達後發送沖繩必吃招牌小吃！機上也有簡易餐食。</p>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d1-food" placeholder="小孩吃不吃得慣？要不要另外準備..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot hotel"></div>
+        <div class="card">
+          <span class="card-type hotel">🏨 住宿</span>
+          <h3>那霸市區飯店</h3>
+          <p>Hotel Azat / 南西觀光 / Community & Spa 中央酒店(別館) / Hotel Lantana / 沖繩RJ 或同級</p>
+          <div class="card-tags">
+            <span class="card-tag">⚠️ 確認實際入住哪間</span>
+            <span class="card-tag kid">👶 問有無嬰兒床</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d1-hotel" placeholder="確認飯店名稱、地址..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot free"></div>
+        <div class="card">
+          <span class="card-type free">🌙 自由時間</span>
+          <h3>自由探訪便利商店、沖繩超市</h3>
+          <p>到飯店安頓好後可以帶小孩到附近超市和便利商店逛逛，買些飲料零食。沖繩超市有很多當地限定商品。</p>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d1-free" placeholder="想去哪間超市？要買什麼？"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-grid">
+      <div class="meal-card">
+        <div class="meal-type">晚餐</div>
+        <div class="meal-name">機上簡易餐食 + 豬肉蛋飯糰</div>
+        <div class="meal-price">含在團費中</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-section" id="day2">
+    <div class="day-header">
+      <div class="day-date">2026年8月20日（四）</div>
+      <div class="day-title">水族館 × 恐龍公園 大冒險</div>
+      <div class="day-subtitle">沖繩北部探索 → 那霸國際通</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot spot"></div>
+        <div class="card">
+          <span class="card-type spot">🐬 景點</span>
+          <h3>海洋博公園 ＆ 美麗海水族館</h3>
+          <p>全球大規模水族館之一，650種約75,000隻海洋生物。依海洋深度分層展示，還有精彩的海豚表演秀！可以眺望珊瑚七色海。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">🐠 小孩必看黑潮之海</span>
+            <span class="card-tag kid">🐬 先查海豚秀時間</span>
+            <span class="card-tag">📷 拍照重點</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d2-aqua" placeholder="海豚秀時間、想買什麼紀念品..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot spot"></div>
+        <div class="card">
+          <span class="card-type spot">🦕 景點</span>
+          <h3>名護鳳梨園（含恐龍公園）</h3>
+          <p>超可愛無人鳳梨造型駕使車、充滿綠意的園區，還有新加入的恐龍公園與質感酒莊。大人小孩都能玩得開心！最後可品嚐新鮮鳳梨。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">🚗 鳳梨車超可愛</span>
+            <span class="card-tag kid">🦕 恐龍公園必拍</span>
+            <span class="card-tag">🍍 鳳梨伴手禮</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d2-pine" placeholder="想買鳳梨相關伴手禮？..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot free"></div>
+        <div class="card">
+          <span class="card-type free">🛍️ 自由活動</span>
+          <h3>國際通大道逛街</h3>
+          <p>全長1.6公里的「奇蹟大街」，百貨、餐廳、土特產店林立。帶小孩可以逛逛牧志公設市場，體驗沖繩在地文化。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">🍦 有很多小吃攤</span>
+            <span class="card-tag">🎒 土產伴手禮</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d2-kokusai" placeholder="想逛哪些店、想買什麼..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-grid">
+      <div class="meal-card">
+        <div class="meal-type">早餐</div>
+        <div class="meal-name">飯店內享用</div>
+        <div class="meal-price">含在團費</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-type">午餐</div>
+        <div class="meal-name">百年大家定食 或 日式自助餐</div>
+        <div class="meal-price">¥1,980</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-type">晚餐</div>
+        <div class="meal-name">燒肉五苑 吃到飽＋飲料喝到飽</div>
+        <div class="meal-price">¥4,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-section" id="day3">
+    <div class="day-header">
+      <div class="day-date">2026年8月21日（五）</div>
+      <div class="day-title">自由冒險日</div>
+      <div class="day-subtitle">贈送單軌電車一日券 🚝</div>
+    </div>
+
+    <div class="tips-panel">
+      <h3>🎫 電車一日券可以去的地方</h3>
+      <ul>
+        <li>國際通大道 — 各電車站下車都可逛</li>
+        <li>新都心 — DFS、天久樂市商場</li>
+        <li>小祿站 — 那霸AEON購物中心</li>
+        <li>首里站 — 首里城公園（世界文化遺產）</li>
+        <li>安里站 — 榮町市場（懷舊商圈）</li>
+        <li>牧志站 — 市場本通（沖繩人的廚房）</li>
+      </ul>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot free"></div>
+        <div class="card">
+          <span class="card-type free">🎯 推薦路線 A</span>
+          <h3>文化探索：首里城 → 榮町市場 → 國際通</h3>
+          <p>適合想帶小孩認識沖繩歷史的家庭。首里城公園範圍大但有平坦步道，榮町市場可以體驗在地生活感。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">🏯 世界遺產教育意義</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d3-routeA" placeholder="要走這條路線嗎？"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot free"></div>
+        <div class="card">
+          <span class="card-type free">🎯 推薦路線 B</span>
+          <h3>購物休閒：AEON → 新都心 → 國際通</h3>
+          <p>適合想輕鬆購物的家庭。AEON有超市和兒童遊樂區，新都心有DFS免稅店。</p>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d3-routeB" placeholder="想去哪些店？"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot free"></div>
+        <div class="card">
+          <span class="card-type free">🎯 推薦路線 C</span>
+          <h3>購物狂：浦添西海岸 PARCO CITY / ASHIBINAA Outlet</h3>
+          <p>需搭計程車或巴士。PARCO CITY很大有兒童區，ASHIBINAA有超過100個品牌。</p>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d3-routeC" placeholder="交通方式、預算..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-grid">
+      <div class="meal-card">
+        <div class="meal-type">早餐</div>
+        <div class="meal-name">飯店內享用</div>
+        <div class="meal-price">含在團費</div>
+      </div>
+      <div class="meal-card" style="border:2px dashed var(--coral)">
+        <div class="meal-type" style="color:var(--coral)">午餐 ⚠️</div>
+        <div class="meal-name">自理</div>
+        <div class="meal-price">建議先想好去哪吃</div>
+      </div>
+      <div class="meal-card" style="border:2px dashed var(--coral)">
+        <div class="meal-type" style="color:var(--coral)">晚餐 ⚠️</div>
+        <div class="meal-name">自理</div>
+        <div class="meal-price">國際通選擇很多</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="day-section" id="day4">
+    <div class="day-header">
+      <div class="day-date">2026年8月22日（六）</div>
+      <div class="day-title">最後衝刺＆回家</div>
+      <div class="day-subtitle">波上神宮 → Outlet → 瀨長島 → 那霸空港</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot spot"></div>
+        <div class="card">
+          <span class="card-type spot">⛩️ 景點</span>
+          <h3>波之上神宮</h3>
+          <p>佇立於海邊斷崖的琉球第一神社，在琉球八社中排名第一。也是那霸市史蹟文化遺產。可以帶小孩體驗日式參拜文化。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">⛩️ 可以求御守當紀念</span>
+            <span class="card-tag">📷 斷崖海景超美</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d4-shrine" placeholder="想求什麼御守？"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot free"></div>
+        <div class="card">
+          <span class="card-type spot">🛍️ 購物</span>
+          <h3>ASHIBINAA Outlet</h3>
+          <p>超過100家世界品牌進駐的Outlet購物城，COACH、MARC JACOBS等精品以折扣價入手。最後的購物衝刺機會！</p>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d4-outlet" placeholder="想買什麼品牌？預算？"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot spot"></div>
+        <div class="card">
+          <span class="card-type spot">🏝️ 景點</span>
+          <h3>瀨長島 Umikaji Terrace</h3>
+          <p>小希臘風情的白色建築群，結合美食、遊樂、療癒的島嶼度假村。距離機場僅15分鐘，是最後放鬆的好去處。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">📷 白色建築超好拍</span>
+            <span class="card-tag">⚠️ 階梯多注意幼兒</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d4-senaga" placeholder="想在這裡吃什麼？"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot spot"></div>
+        <div class="card">
+          <span class="card-type spot">✈️ 回程</span>
+          <h3>那霸空港 → 台中 (JX313)</h3>
+          <p>20:10 起飛，20:50 抵達台中。建議提前在瀨長島或機場商店街買完最後的伴手禮。</p>
+          <div class="card-tags">
+            <span class="card-tag kid">👶 小孩可能很累，準備小毯子</span>
+          </div>
+          <div class="note-area">
+            <label>📝 我的筆記</label>
+            <textarea data-key="d4-return" placeholder="機場還想買什麼？"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-grid">
+      <div class="meal-card">
+        <div class="meal-type">早餐</div>
+        <div class="meal-name">飯店內享用</div>
+        <div class="meal-price">含在團費</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-type">午餐</div>
+        <div class="meal-name">沖繩特色風味料理</div>
+        <div class="meal-price">¥2,500</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-type">晚餐</div>
+        <div class="meal-name">機上簡易餐食</div>
+        <div class="meal-price">含在團費</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checklist -->
+  <div class="day-section" id="checklist">
+    <div class="day-header">
+      <div class="day-date">出發準備</div>
+      <div class="day-title">親子出遊打包清單</div>
+    </div>
+
+    <div class="checklist" id="checklistKids">
+      <h3>👶 兒童必備</h3>
+      <div class="check-items"></div>
+      <div class="add-item-row">
+        <input type="text" placeholder="新增項目..." class="new-item-input">
+        <button class="add-btn" onclick="addCheckItem('checklistKids')">+</button>
+      </div>
+    </div>
+
+    <div class="checklist" id="checklistDocs">
+      <h3>📄 證件文件</h3>
+      <div class="check-items"></div>
+      <div class="add-item-row">
+        <input type="text" placeholder="新增項目..." class="new-item-input">
+        <button class="add-btn" onclick="addCheckItem('checklistDocs')">+</button>
+      </div>
+    </div>
+
+    <div class="checklist" id="checklistDaily">
+      <h3>🧳 日用品</h3>
+      <div class="check-items"></div>
+      <div class="add-item-row">
+        <input type="text" placeholder="新增項目..." class="new-item-input">
+        <button class="add-btn" onclick="addCheckItem('checklistDaily')">+</button>
+      </div>
+    </div>
+
+    <div class="checklist" id="checklistOther">
+      <h3>💡 其他提醒</h3>
+      <div class="check-items"></div>
+      <div class="add-item-row">
+        <input type="text" placeholder="新增項目..." class="new-item-input">
+        <button class="add-btn" onclick="addCheckItem('checklistOther')">+</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="save-toast" id="saveToast">✓ 已儲存</div>
+
+<script>
+// Default checklist items
+const defaultChecklists = {
+  checklistKids: [
+    '兒童護照（效期確認）',
+    '推車 / 背巾',
+    '兒童防曬乳 SPF50+',
+    '帽子 / 遮陽帽',
+    '水壺',
+    '兒童常備藥（退燒、止瀉、OK繃）',
+    '小零食 / 餅乾',
+    '換洗衣物 x4套',
+    '薄外套（室內冷氣很冷）',
+    '小毯子（飛機和車上用）',
+    '尿布（視年齡）',
+    '濕紙巾',
+  ],
+  checklistDocs: [
+    '大人護照',
+    '電子機票 / 行程確認單',
+    '旅遊平安險保單',
+    '日幣現金',
+    '信用卡',
+    '飯店確認信',
+    'Visit Japan Web 註冊完成',
+  ],
+  checklistDaily: [
+    '防曬乳',
+    '墨鏡',
+    '行動電源',
+    '充電線',
+    '相機 / 記憶卡',
+    '雨傘 / 輕便雨衣',
+    '拖鞋 / 涼鞋',
+    '盥洗用品',
+  ],
+  checklistOther: [
+    '確認飯店實際名稱',
+    '查好海豚秀表演時間',
+    '下載沖繩單軌電車路線圖',
+    '第三天午晚餐餐廳先查好',
+    '準備塑膠袋裝髒衣服',
+    '確認行李重量限制',
+  ]
+};
+
+// Storage keys
+const STORAGE_PREFIX = 'okinawa2026_';
+
+function loadData(key, fallback) {
+  try {
+    const val = localStorage.getItem(STORAGE_PREFIX + key);
+    return val ? JSON.parse(val) : fallback;
+  } catch { return fallback; }
+}
+
+function saveData(key, value) {
+  try {
+    localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
+    showSaveToast();
+  } catch {}
+}
+
+function showSaveToast() {
+  const toast = document.getElementById('saveToast');
+  toast.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
+}
+
+// Tab navigation
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    const target = tab.dataset.target;
+    document.querySelectorAll('.day-section, .analysis-section').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(target);
+    if (el) el.classList.add('active');
+  });
+});
+
+// Notes auto-save
+let saveTimer;
+document.querySelectorAll('.note-area textarea').forEach(ta => {
+  const key = ta.dataset.key;
+  ta.value = loadData('note_' + key, '');
+  ta.addEventListener('input', () => {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => saveData('note_' + key, ta.value), 500);
+  });
+});
+
+// Checklist rendering
+function renderChecklist(id) {
+  const container = document.querySelector(`#${id} .check-items`);
+  const items = loadData('cl_' + id, defaultChecklists[id] || []);
+  const checked = loadData('cl_checked_' + id, {});
+
+  container.innerHTML = items.map((item, i) => `
+    <label class="check-item">
+      <input type="checkbox" ${checked[i] ? 'checked' : ''} data-idx="${i}" data-list="${id}">
+      <span>${item}</span>
+    </label>
+  `).join('');
+
+  container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const checked = loadData('cl_checked_' + id, {});
+      checked[cb.dataset.idx] = cb.checked;
+      saveData('cl_checked_' + id, checked);
+    });
+  });
+}
+
+function addCheckItem(id) {
+  const input = document.querySelector(`#${id} .new-item-input`);
+  const val = input.value.trim();
+  if (!val) return;
+
+  const items = loadData('cl_' + id, defaultChecklists[id] || []);
+  items.push(val);
+  saveData('cl_' + id, items);
+  input.value = '';
+  renderChecklist(id);
+}
+
+// Handle enter key on checklist inputs
+document.querySelectorAll('.new-item-input').forEach(input => {
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      const listId = input.closest('.checklist').id;
+      addCheckItem(listId);
+    }
+  });
+});
+
+// Initialize checklists
+Object.keys(defaultChecklists).forEach(id => renderChecklist(id));
+</script>
+
+</body>
+</html>
