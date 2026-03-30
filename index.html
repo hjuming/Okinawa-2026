@@ -985,6 +985,38 @@ body {
   transform: translateY(0);
 }
 
+/* 頁尾 */
+.site-footer {
+  text-align: center;
+  padding: 2.25rem 1.25rem 2.5rem;
+  background: linear-gradient(180deg, var(--sky) 0%, rgba(202, 240, 248, 0.55) 100%);
+  border-top: 1px solid rgba(0, 119, 182, 0.12);
+}
+
+.site-footer__brand {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ocean-deep);
+  letter-spacing: 0.03em;
+  margin: 0 0 0.4rem;
+}
+
+.site-footer__tagline {
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+.site-footer__tagline a {
+  color: var(--ocean);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-footer__tagline a:hover {
+  color: var(--ocean-deep);
+}
+
 /* 行程地點 → Google Maps */
 a.place-map {
   color: var(--ocean);
@@ -1554,6 +1586,11 @@ a.place-map:hover {
   </div>
 
 </div>
+
+<footer class="site-footer">
+  <p class="site-footer__brand">WEDO International Marketing Group</p>
+  <p class="site-footer__tagline"><a href="https://www.wedopr.com/" target="_blank" rel="noopener noreferrer">The Best Things We Do</a></p>
+</footer>
 
 <div class="save-toast" id="saveToast">✓ 已儲存</div>
 
