@@ -117,6 +117,37 @@ body {
   font-weight: 500;
 }
 
+.hero-pdf-wrap {
+  margin-top: 2rem;
+}
+
+.hero-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  background: var(--sand);
+  color: var(--ocean-deep);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  border: 2px solid rgba(255,255,255,0.55);
+}
+
+.hero-pdf-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+  background: var(--white);
+}
+
+.hero-pdf-btn:focus-visible {
+  outline: 3px solid var(--ocean-light);
+  outline-offset: 3px;
+}
+
 /* Flight info bar */
 .flight-bar {
   background: var(--white);
@@ -672,6 +703,9 @@ body {
       <span class="hero-tag">👨‍👩‍👧‍👦 親子行程</span>
       <span class="hero-tag">🚫 不走購物站</span>
       <span class="hero-tag">4天3夜</span>
+    </div>
+    <div class="hero-pdf-wrap">
+      <a class="hero-pdf-btn" href="0819歡樂暢遊經典日本沖繩4日遊.pdf" download="0819歡樂暢遊經典日本沖繩4日遊.pdf">📄 下載行程 PDF（旅行社原版）</a>
     </div>
   </div>
 </section>
