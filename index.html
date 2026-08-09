@@ -8,11 +8,22 @@
   <meta name="theme-color" content="#0b4b57">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="小田田家族・2026 蔚藍沖繩旅遊手冊">
+  <meta property="og:url" content="https://hjuming.github.io/Okinawa-2026/">
   <meta property="og:title" content="2026 小田田家族｜蔚藍沖繩旅遊手冊">
   <meta property="og:description" content="8/19–8/22 台中出發沖繩四天三夜：海洋博、鳳梨園、國際通、波之上神宮、ASHIBINAA OUTLET 與瀨長島。">
-  <meta property="og:image" content="https://hjuming.github.io/Okinawa-2026/%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A/1.jpg">
-  <meta property="og:image:alt" content="沖繩海岸旅行手冊封面視覺">
+  <meta property="og:image" content="https://hjuming.github.io/Okinawa-2026/%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A/og-okinawa-2026.jpg">
+  <meta property="og:image:secure_url" content="https://hjuming.github.io/Okinawa-2026/%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A/og-okinawa-2026.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="805">
+  <meta property="og:image:alt" content="蔚藍沖繩旅遊手冊封面">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="2026 小田田家族｜蔚藍沖繩旅遊手冊">
+  <meta name="twitter:description" content="8/19–8/22 台中出發沖繩四天三夜旅遊手冊，含每日行程與 Google Maps 路線。">
+  <meta name="twitter:image" content="https://hjuming.github.io/Okinawa-2026/%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A/og-okinawa-2026.jpg">
+  <meta name="twitter:image:alt" content="蔚藍沖繩旅遊手冊封面">
+  <link rel="canonical" href="https://hjuming.github.io/Okinawa-2026/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700;900&amp;display=swap" rel="stylesheet">
@@ -199,6 +210,16 @@
     .button:hover { transform: translateY(-2px); background: var(--sea); }
     .button.secondary { background: transparent; color: var(--sea-deep); }
     .button.secondary:hover { background: var(--sea-soft); }
+    .map-link {
+      color: var(--sea);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: rgba(11, 104, 113, 0.35);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+    .map-link:hover { color: var(--coral); text-decoration-color: var(--coral); }
+    .map-link::after { content: " ↗"; font-size: 0.82em; }
 
     .section {
       width: min(var(--max), calc(100% - 40px));
@@ -347,6 +368,24 @@
     .meal-label { display: block; margin-bottom: 5px; color: var(--coral); font-size: 0.74rem; font-weight: 700; }
     .meal-name { color: var(--muted); font-size: 0.83rem; line-height: 1.6; }
     .gift { color: var(--coral); font-weight: 700; }
+    .day-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .route-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 15px;
+      border: 1px solid var(--sea);
+      border-radius: 999px;
+      color: var(--sea-deep);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+    .route-button::after { content: "↗"; font-size: 1rem; }
+    .route-button:hover { transform: translateY(-2px); background: var(--sea); color: var(--white); }
+    .route-note { align-self: center; margin: 0; color: var(--muted); font-size: 0.76rem; }
 
     .free-day {
       display: grid;
@@ -531,7 +570,7 @@
           <aside class="panel">
             <p class="panel-label">ACCOMMODATION</p>
             <h3>三晚住在那霸</h3>
-            <p class="hotel-name">那霸社區及 SPA 中央酒店（別館）<br><span lang="en">Community &amp; Spa Naha Central Hotel</span></p>
+            <p class="hotel-name"><a class="map-link" href="https://maps.app.goo.gl/SCd79ExMcq3bDP188" target="_blank" rel="noopener noreferrer">那霸社區及 SPA 中央酒店（別館）</a><br><span lang="en">Community &amp; Spa Naha Central Hotel</span></p>
             <dl class="hotel-meta">
               <div><dt>住宿日期</dt><dd>8/19 — 8/21</dd></div>
               <div><dt>入住晚數</dt><dd>3 晚</dd></div>
@@ -559,12 +598,13 @@
               <h3>抵達那霸，先把旅程放慢</h3>
               <p class="day-lead">下午集合、搭乘 JX312 前往沖繩；抵達後入住那霸市區，晚上保留一點自由探索的時間。</p>
               <ul class="day-points">
-                <li><span><strong>台中機場 → 沖繩那霸空港</strong><br>16:40 起飛，19:10 抵達。</span></li>
+                <li><span><strong><a class="map-link" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a> → <a class="map-link" href="https://maps.app.goo.gl/Jipi4K6FaHuGooNcw6" target="_blank" rel="noopener noreferrer">沖繩那霸空港</a></strong><br>16:40 起飛，19:10 抵達。</span></li>
                 <li><span class="gift">贈送：沖繩必吃招牌「沖繩豬肉蛋飯糰」</span></li>
-                <li><span><strong>住宿：</strong>那霸市區 Community &amp; Spa Naha Central Hotel（別館）</span></li>
+                <li><span><strong>住宿：</strong><a class="map-link" href="https://maps.app.goo.gl/SCd79ExMcq3bDP188" target="_blank" rel="noopener noreferrer">那霸市區 Community &amp; Spa Naha Central Hotel（別館）</a></span></li>
                 <li><span>晚間自由探訪便利商店、沖繩超市。</span></li>
               </ul>
               <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">溫暖的家</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">溫暖的家</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">機上簡易餐食＋贈送沖繩豬肉蛋飯糰</span></div></div>
+              <div class="day-actions"><a class="route-button" href="https://www.google.com/maps/dir/?api=1&amp;origin=Naha%20Airport%2C%20Okinawa&amp;destination=Community%20%26%20Spa%20Naha%20Central%20Hotel%2C%20Naha%2C%20Okinawa&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">開啟本日 Google Maps 路線</a><p class="route-note">那霸空港 → 住宿飯店</p></div>
             </div>
           </article>
 
@@ -574,11 +614,12 @@
               <h3>把海的藍，走進北部</h3>
               <p class="day-lead">從海洋博紀念公園出發，看海豚表演與珊瑚七色海；午後走進鳳梨園，晚上回到國際通購物。</p>
               <ul class="day-points">
-                <li><span><strong>海洋博紀念公園</strong>：海豚表演秀、眺望珊瑚七色海、沖繩美之海水族館。</span></li>
-                <li><span><strong>沖繩名護鳳梨園</strong>：可愛無人鳳梨車、恐龍公園、質感酒莊。</span></li>
-                <li><span><strong>自由前往那霸國際通大道</strong>：逛街購物趣。</span></li>
+                <li><span><strong><a class="map-link" href="https://maps.app.goo.gl/NKXiLebxi3aaK5aNA" target="_blank" rel="noopener noreferrer">海洋博紀念公園</a></strong>：海豚表演秀、眺望珊瑚七色海、<a class="map-link" href="https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7" target="_blank" rel="noopener noreferrer">沖繩美之海水族館</a>。</span></li>
+                <li><span><strong><a class="map-link" href="https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8" target="_blank" rel="noopener noreferrer">沖繩名護鳳梨園</a></strong>：可愛無人鳳梨車、恐龍公園、質感酒莊。</span></li>
+                <li><span><strong>自由前往<a class="map-link" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">那霸國際通大道</a></strong>：逛街購物趣。</span></li>
               </ul>
               <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">飯店內享用</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">百年大家定食或日式自助餐</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">日式燒肉吃到飽＋飲料喝到飽（燒肉五苑）或同級</span></div></div>
+              <div class="day-actions"><a class="route-button" href="https://www.google.com/maps/dir/?api=1&amp;origin=Community%20%26%20Spa%20Naha%20Central%20Hotel%2C%20Naha%2C%20Okinawa&amp;destination=Kokusai-dori%2C%20Naha%2C%20Okinawa&amp;waypoints=Okinawa%20Churaumi%20Aquarium%2C%20Motobu%2C%20Okinawa%7CNago%20Pineapple%20Park%2C%20Nago%2C%20Okinawa&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">開啟本日 Google Maps 路線</a><p class="route-note">住宿 → 海洋博 → 鳳梨園 → 國際通</p></div>
             </div>
           </article>
 
@@ -588,11 +629,12 @@
               <h3>神社、海風與最後一站購物</h3>
               <p class="day-lead">從海邊斷崖上的神宮開始，接著到沖繩暢貨中心購物，最後在瀨長島收進一段小希臘風情。</p>
               <ul class="day-points">
-                <li><span><strong>波之上神宮</strong>：佇立於海邊斷崖之琉球第一神社。</span></li>
-                <li><span><strong>沖繩暢貨中心 ASHIBINNAA OUTLET</strong>：打到骨折血拚購物趣。</span></li>
-                <li><span><strong>瀨長島屋台村</strong>：感受小希臘風情。</span></li>
+                <li><span><strong><a class="map-link" href="https://maps.app.goo.gl/LGKiPsZ3WQAY95d36" target="_blank" rel="noopener noreferrer">波之上神宮</a></strong>：佇立於海邊斷崖之琉球第一神社。</span></li>
+                <li><span><strong>沖繩暢貨中心 <a class="map-link" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">ASHIBINNAA OUTLET</a></strong>：打到骨折血拚購物趣。</span></li>
+                <li><span><strong><a class="map-link" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島屋台村</a></strong>：感受小希臘風情。</span></li>
               </ul>
               <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">飯店內享用</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">沖繩特色風味料理</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">方便逛街，敬請自理</span></div></div>
+              <div class="day-actions"><a class="route-button" href="https://www.google.com/maps/dir/?api=1&amp;origin=Community%20%26%20Spa%20Naha%20Central%20Hotel%2C%20Naha%2C%20Okinawa&amp;destination=Senagajima%20Umikaji%20Terrace%2C%20Tomigusuku%2C%20Okinawa&amp;waypoints=Naminoue%20Shrine%2C%20Naha%2C%20Okinawa%7CAshibinaa%20Outlet%20Mall%2C%20Tomigusuku%2C%20Okinawa&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">開啟本日 Google Maps 路線</a><p class="route-note">住宿 → 波之上神宮 → Outlet → 瀨長島</p></div>
             </div>
           </article>
 
@@ -603,10 +645,11 @@
               <p class="day-lead">最後一天不排固定景點，讓每個人依照自己的需求自由逛街，再搭乘專車前往機場。</p>
               <ul class="day-points">
                 <li><span class="gift">贈送：單軌電車一日券。</span></li>
-                <li><span><strong>全日自由活動</strong>：可自由前往國際通大道或新都心，安排逛街購物。</span></li>
-                <li><span><strong>專車前往那霸空港</strong>，前往沖繩那霸空港商店街，再搭乘 JX313 返台。</span></li>
+                <li><span><strong>全日自由活動</strong>：可自由前往<a class="map-link" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通大道</a>或<a class="map-link" href="https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7" target="_blank" rel="noopener noreferrer">新都心</a>，安排逛街購物。</span></li>
+                <li><span><strong>專車前往<a class="map-link" href="https://maps.app.goo.gl/Jipi4K6FaHuGooNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></strong>，前往沖繩那霸空港商店街，再搭乘 JX313 返台。</span></li>
               </ul>
               <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">飯店內享用</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">方便逛街，敬請自理</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">機上簡易餐食</span></div></div>
+              <div class="day-actions"><a class="route-button" href="https://www.google.com/maps/dir/?api=1&amp;origin=Community%20%26%20Spa%20Naha%20Central%20Hotel%2C%20Naha%2C%20Okinawa&amp;destination=Naha%20Airport%2C%20Okinawa&amp;waypoints=Kokusai-dori%2C%20Naha%2C%20Okinawa%7CShintoshin%2C%20Naha%2C%20Okinawa&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">開啟自由日 Google Maps 路線</a><p class="route-note">自由日參考：住宿 → 國際通／新都心 → 那霸空港</p></div>
             </div>
           </article>
         </div>
