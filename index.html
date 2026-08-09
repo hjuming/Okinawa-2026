@@ -1,1875 +1,676 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 沖繩親子冒險 旅遊手冊</title>
-<meta name="description" content="2026年8月台中出發沖繩親子四天三夜：星宇航空、美麗海水族館、鳳梨園、國際通、單軌電車自由日、地圖與 PDF 行程。">
-<link rel="canonical" href="https://hjuming.github.io/Okinawa-2026/">
-<link rel="preload" as="image" href="旅遊資訊/1.jpg">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="zh_TW">
-<meta property="og:title" content="2026 沖繩親子冒險 旅遊手冊">
-<meta property="og:description" content="2026年8月台中出發沖繩親子四天三夜：星宇航空、水族館、鳳梨園、自由日攻略與互動地圖。">
-<meta property="og:url" content="https://hjuming.github.io/Okinawa-2026/">
-<meta property="og:image" content="https://hjuming.github.io/Okinawa-2026/%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A/3.jpg">
-<meta property="og:image:alt" content="沖繩親子旅遊手冊主視覺">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="2026 沖繩親子冒險 旅遊手冊">
-<meta name="twitter:description" content="2026年8月台中出發沖繩親子四天三夜行程、地圖與 PDF。">
-<meta name="twitter:image" content="https://hjuming.github.io/Okinawa-2026/%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A/3.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-<style>
-:root {
-  --ocean: #0077B6;
-  --ocean-deep: #023E8A;
-  --ocean-light: #90E0EF;
-  --sand: #F4E8C1;
-  --sand-light: #FFF8E7;
-  --coral: #FF6B6B;
-  --coral-soft: #FFADAD;
-  --palm: #2D6A4F;
-  --palm-light: #95D5B2;
-  --sunset: #FF8C42;
-  --sky: #CAF0F8;
-  --white: #FFFFFF;
-  --dark: #1B2838;
-  --gray: #6B7280;
-  --gray-light: #E5E7EB;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Noto Sans TC', sans-serif;
-  background: var(--sky);
-  color: var(--dark);
-  overflow-x: hidden;
-}
-
-/* Hero */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--ocean-deep);
-  background-image: url("旅遊資訊/1.jpg");
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-}
-
-/* 底圖上的漸層遮罩：維持白字與按鈕可讀 */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    160deg,
-    rgba(2, 62, 138, 0.82) 0%,
-    rgba(0, 119, 182, 0.58) 38%,
-    rgba(2, 62, 138, 0.72) 72%,
-    rgba(2, 46, 90, 0.88) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 120px;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z' fill='%23CAF0F8'/%3E%3C/svg%3E");
-  background-size: cover;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.hero-content {
-  text-align: center;
-  z-index: 3;
-  padding: 2rem;
-  animation: fadeUp 1s ease-out;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.hero-emoji {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-.hero h1 {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  color: var(--white);
-  font-weight: 900;
-  text-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.45),
-    0 8px 32px rgba(0, 0, 0, 0.35);
-  line-height: 1.3;
-  margin-bottom: 0.5rem;
-}
-
-.hero h1 span {
-  display: block;
-  font-size: 0.5em;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  opacity: 0.85;
-  margin-top: 0.5rem;
-}
-
-.hero-meta {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-}
-
-.hero-tag {
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: var(--white);
-  padding: 0.5rem 1.2rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.hero-pdf-wrap {
-  margin-top: 2rem;
-}
-
-.hero-pdf-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.6rem;
-  background: var(--sand);
-  color: var(--ocean-deep);
-  font-weight: 700;
-  font-size: 1rem;
-  border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-  border: 2px solid rgba(255,255,255,0.55);
-}
-
-.hero-pdf-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.28);
-  background: var(--white);
-}
-
-.hero-pdf-btn:focus-visible {
-  outline: 3px solid var(--ocean-light);
-  outline-offset: 3px;
-}
-
-/* Flight info bar */
-.flight-bar {
-  background: var(--white);
-  padding: 1.25rem 2rem 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  position: relative;
-  z-index: 5;
-}
-
-.flight-bar-flights {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.flight-item--agency {
-  width: 100%;
-  max-width: 24rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--gray-light);
-}
-
-.flight-item {
-  text-align: center;
-}
-
-.flight-item .label {
-  font-size: 0.75rem;
-  color: var(--gray);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.3rem;
-}
-
-.flight-item .value {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--ocean-deep);
-}
-
-.flight-item .flight-duration {
-  display: block;
-  margin-top: 0.4rem;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--gray);
-}
-
-.flight-tz-note {
-  width: 100%;
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--gray);
-  padding: 0.6rem 1rem 1rem;
-  line-height: 1.5;
-  max-width: 42rem;
-  margin: 0 auto;
-}
-
-/* Navigation tabs（第一列：分析／打包；第二列：四天） */
-.nav-tabs {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--white);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.nav-tabs-row {
-  display: flex;
-  width: 100%;
-}
-
-.nav-tabs-row--days {
-  border-top: 1px solid var(--gray-light);
-}
-
-.nav-tabs-row--tools .nav-tab {
-  flex: 1;
-  min-width: 0;
-}
-
-.nav-tabs-row--days .nav-tab {
-  flex: 1;
-  min-width: 0;
-}
-
-.nav-tab {
-  padding: 0.85rem 0.35rem;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--gray);
-  transition: all 0.3s;
-  border-bottom: 3px solid transparent;
-  white-space: nowrap;
-}
-
-.nav-tab.active {
-  color: var(--ocean);
-  border-bottom-color: var(--ocean);
-  font-weight: 700;
-}
-
-.nav-tab:hover {
-  color: var(--ocean);
-  background: var(--sky);
-}
-
-.nav-tab .day-num {
-  display: block;
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.35rem;
-  font-weight: 900;
-  margin-bottom: 0.2rem;
-}
-
-@media (max-width: 380px) {
-  .nav-tab {
-    font-size: 0.78rem;
-    padding: 0.75rem 0.2rem;
-  }
-  .nav-tab .day-num {
-    font-size: 1.15rem;
-  }
-}
-
-/* Main content */
-.main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1rem 6rem;
-}
-
-/* Day sections（圖 ③ 底圖：Day1–4、打包清單） */
-.day-section {
-  display: none;
-  animation: fadeIn 0.4s ease;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border-radius: 20px;
-  padding: 0.35rem 0.5rem 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.day-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url("旅遊資訊/3.jpg") center / cover no-repeat;
-  z-index: 0;
-  border-radius: 20px;
-}
-
-.day-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.93) 0%,
-    rgba(255, 255, 255, 0.82) 45%,
-    rgba(202, 240, 248, 0.88) 100%
-  );
-  z-index: 0;
-  border-radius: 20px;
-  pointer-events: none;
-}
-
-.day-section > * {
-  position: relative;
-  z-index: 1;
-}
-
-.day-section.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.day-header {
-  text-align: center;
-  margin-bottom: 1rem;
-  padding: 2rem 1rem 1rem;
-}
-
-.day-map-wrap {
-  max-width: 52rem;
-  margin: 0 auto 1.75rem;
-  padding: 0 1rem;
-}
-
-.day-map-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.6rem;
-}
-
-.day-map-title {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--ocean-deep);
-}
-
-.day-map-hint {
-  font-size: 0.72rem;
-  color: var(--gray);
-}
-
-.day-map {
-  height: min(42vh, 320px);
-  min-height: 240px;
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 2px solid var(--ocean-light);
-  box-shadow: 0 4px 18px rgba(2, 62, 138, 0.12);
-  background: var(--gray-light);
-}
-
-.day-map .leaflet-control-attribution {
-  font-size: 10px;
-  max-width: 70%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media print {
-  .day-map-wrap { display: none !important; }
-}
-
-.day-map .day-map-num-outer {
-  background: transparent !important;
-  border: none !important;
-}
-
-.day-map .day-map-num-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--white);
-  border: 2px solid var(--white);
-  box-shadow: 0 2px 8px rgba(27, 40, 56, 0.35);
-}
-
-.day-date {
-  font-size: 0.85rem;
-  color: var(--ocean);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
-}
-
-.day-title {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: var(--dark);
-  line-height: 1.4;
-}
-
-.day-subtitle {
-  color: var(--gray);
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-}
-
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: 2.5rem;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0.9rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--ocean-light), var(--coral-soft), var(--palm-light));
-  border-radius: 2px;
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 2rem;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -1.85rem;
-  top: 0.3rem;
-  width: 1.2rem;
-  height: 1.2rem;
-  border-radius: 50%;
-  border: 3px solid var(--white);
-  box-shadow: 0 0 0 2px var(--ocean);
-  z-index: 2;
-}
-
-.timeline-dot.spot { background: var(--ocean); }
-.timeline-dot.food { background: var(--sunset); box-shadow: 0 0 0 2px var(--sunset); }
-.timeline-dot.hotel { background: var(--palm); box-shadow: 0 0 0 2px var(--palm); }
-.timeline-dot.free { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
-
-.card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.day-section .card {
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 20px rgba(2, 62, 138, 0.08);
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-}
-
-.card-type {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.25rem 0.7rem;
-  border-radius: 50px;
-  margin-bottom: 0.6rem;
-}
-
-.card-type.spot { background: var(--sky); color: var(--ocean-deep); }
-.card-type.food { background: #FFF3E0; color: #E65100; }
-.card-type.hotel { background: #E8F5E9; color: #2E7D32; }
-.card-type.free { background: #FCE4EC; color: #C62828; }
-.card-type.gift { background: #F3E5F5; color: #6A1B9A; }
-
-.card h3 {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: var(--dark);
-}
-
-.card h3 a.place-map {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-.card p {
-  font-size: 0.9rem;
-  color: var(--gray);
-  line-height: 1.7;
-}
-
-.card-tags {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-  margin-top: 0.8rem;
-}
-
-.card-tag {
-  font-size: 0.75rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
-  background: var(--gray-light);
-  color: var(--gray);
-}
-
-.card-tag.kid { background: #E3F2FD; color: #1565C0; }
-
-/* Notes area */
-.note-area {
-  margin-top: 1rem;
-  border-top: 1px dashed var(--gray-light);
-  padding-top: 0.8rem;
-}
-
-.note-area label {
-  font-size: 0.75rem;
-  color: var(--ocean);
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
-  margin-bottom: 0.4rem;
-}
-
-.note-area .note-hint {
-  font-size: 0.68rem;
-  font-weight: 400;
-  color: var(--gray);
-  line-height: 1.45;
-  max-width: 100%;
-}
-
-.note-area textarea {
-  width: 100%;
-  border: 1px solid var(--gray-light);
-  border-radius: 8px;
-  padding: 0.6rem;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 0.85rem;
-  resize: vertical;
-  min-height: 60px;
-  transition: border-color 0.2s;
-  color: var(--dark);
-  background: var(--sand-light);
-}
-
-.note-area textarea:focus {
-  outline: none;
-  border-color: var(--ocean);
-  background: var(--white);
-}
-
-/* Tips panel */
-.tips-panel {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(244, 232, 193, 0.9);
-  border-radius: 16px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  box-shadow: 0 4px 18px rgba(2, 62, 138, 0.06);
-}
-
-.tips-panel h3 {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.1rem;
-  color: var(--sunset);
-  margin-bottom: 0.8rem;
-}
-
-.tips-panel ul {
-  list-style: none;
-  padding: 0;
-}
-
-.tips-panel li {
-  padding: 0.4rem 0;
-  font-size: 0.9rem;
-  color: var(--dark);
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.tips-panel li::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  color: var(--sunset);
-}
-
-/* Checklist */
-.checklist {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 18px rgba(2, 62, 138, 0.08);
-  margin: 2rem 0;
-  border: 1px solid rgba(255, 255, 255, 0.75);
-}
-
-.checklist h3 {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: var(--dark);
-}
-
-.check-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--gray-light);
-  cursor: pointer;
-  user-select: none;
-}
-
-.check-item:last-child { border-bottom: none; }
-
-.check-item input[type="checkbox"] {
-  width: 1.2rem;
-  height: 1.2rem;
-  accent-color: var(--ocean);
-  cursor: pointer;
-}
-
-.check-item span {
-  font-size: 0.9rem;
-  transition: all 0.2s;
-}
-
-.check-item input:checked + span {
-  text-decoration: line-through;
-  color: var(--gray);
-}
-
-.add-item-row {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-}
-
-.add-item-row input {
-  flex: 1;
-  border: 1px solid var(--gray-light);
-  border-radius: 8px;
-  padding: 0.5rem 0.8rem;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 0.85rem;
-}
-
-.add-item-row input:focus {
-  outline: none;
-  border-color: var(--ocean);
-}
-
-.add-btn {
-  background: var(--ocean);
-  color: var(--white);
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.add-btn:hover { background: var(--ocean-deep); }
-
-/* Meal summary */
-.meal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.meal-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  text-align: center;
-}
-
-.day-section .meal-card {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-}
-
-.meal-card .meal-type {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--sunset);
-  margin-bottom: 0.3rem;
-}
-
-.meal-card .meal-name {
-  font-size: 0.9rem;
-  color: var(--dark);
-  font-weight: 500;
-}
-
-.meal-card .meal-price {
-  font-size: 0.8rem;
-  color: var(--gray);
-  margin-top: 0.2rem;
-}
-
-/* Analysis section（圖 ② 底圖：行程總覽分析） */
-.analysis-section {
-  display: none;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border-radius: 20px;
-  padding: 0.35rem 0.5rem 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.analysis-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url("旅遊資訊/2.jpg") center / cover no-repeat;
-  z-index: 0;
-  border-radius: 20px;
-}
-
-.analysis-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94) 0%,
-    rgba(255, 255, 255, 0.8) 42%,
-    rgba(244, 232, 193, 0.35) 100%
-  );
-  z-index: 0;
-  border-radius: 20px;
-  pointer-events: none;
-}
-
-.analysis-section > * {
-  position: relative;
-  z-index: 1;
-}
-
-.analysis-section.active { display: block; }
-
-.analysis-card {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(2, 62, 138, 0.08);
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-.analysis-card h3 {
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.15rem;
-  color: var(--ocean-deep);
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--ocean-light);
-}
-
-.pro-con {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-@media (max-width: 500px) {
-  .pro-con { grid-template-columns: 1fr; }
-}
-
-.pro-list, .con-list {
-  padding: 0;
-  list-style: none;
-}
-
-.pro-list li, .con-list li {
-  padding: 0.4rem 0;
-  font-size: 0.9rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.pro-list li::before { content: '👍'; position: absolute; left: 0; }
-.con-list li::before { content: '⚠️'; position: absolute; left: 0; }
-
-.score-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin: 0.6rem 0;
-}
-
-.score-label {
-  font-size: 0.85rem;
-  min-width: 80px;
-  color: var(--dark);
-}
-
-.score-track {
-  flex: 1;
-  height: 8px;
-  background: var(--gray-light);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.score-fill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.8s ease;
-}
-
-.score-value {
-  font-size: 0.85rem;
-  font-weight: 700;
-  min-width: 30px;
-  text-align: right;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .flight-bar { padding: 1rem 1rem 0.25rem; }
-  .flight-bar-flights { gap: 1.5rem; }
-  .flight-item .value { font-size: 0.95rem; }
-  .main { padding: 1.5rem 0.8rem 4rem; }
-  .timeline { padding-left: 2rem; }
-  .hero h1 { font-size: 2rem; }
-  .pro-con { grid-template-columns: 1fr; }
-}
-
-/* Print styles */
-@media print {
-  .nav-tabs, .note-area, .add-item-row, .add-btn { display: none; }
-  .day-section { display: block !important; page-break-before: always; }
-  .hero {
-    min-height: auto;
-    padding: 2rem;
-    background-image: none;
-    background: var(--ocean-deep);
-  }
-  .hero::after { display: none; }
-  .analysis-section::before,
-  .analysis-section::after,
-  .day-section::before,
-  .day-section::after {
-    display: none !important;
-  }
-  .analysis-section,
-  .day-section {
-    background: var(--white);
-    padding: 0;
-  }
-}
-
-/* Saved indicator */
-.save-toast {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background: var(--palm);
-  color: var(--white);
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s;
-  z-index: 200;
-  pointer-events: none;
-}
-
-.save-toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 頁尾 */
-.site-footer {
-  text-align: center;
-  padding: 2.25rem 1.25rem 2.5rem;
-  background: linear-gradient(180deg, var(--sky) 0%, rgba(202, 240, 248, 0.55) 100%);
-  border-top: 1px solid rgba(0, 119, 182, 0.12);
-}
-
-.site-footer__brand {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ocean-deep);
-  letter-spacing: 0.03em;
-  margin: 0 0 0.4rem;
-}
-
-.site-footer__tagline {
-  font-size: 0.78rem;
-  margin: 0;
-}
-
-.site-footer__tagline a {
-  color: var(--ocean);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.site-footer__tagline a:hover {
-  color: var(--ocean-deep);
-}
-
-/* 行程地點 → Google Maps */
-a.place-map {
-  color: var(--ocean);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: 600;
-}
-a.place-map:hover {
-  color: var(--ocean-deep);
-}
-.hero-tag a.place-map {
-  color: var(--white);
-  font-weight: 700;
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 小田田家族｜蔚藍沖繩旅遊手冊</title>
+  <meta name="description" content="小田田家族 2026 年 8 月 19 日至 22 日沖繩四天三夜旅遊手冊。台中出發，星宇航空 JX312／JX313，行程以大聲旅行社最終旅遊資料為準。">
+  <meta name="theme-color" content="#0b4b57">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="2026 小田田家族｜蔚藍沖繩旅遊手冊">
+  <meta property="og:description" content="8/19–8/22 台中出發沖繩四天三夜：海洋博、鳳梨園、國際通、波之上神宮、ASHIBINAA OUTLET 與瀨長島。">
+  <meta property="og:image" content="https://hjuming.github.io/Okinawa-2026/%E6%97%85%E9%81%8A%E8%B3%87%E8%A8%8A/1.jpg">
+  <meta property="og:image:alt" content="沖繩海岸旅行手冊封面視覺">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fbfaf7;
+      --paper-deep: #f1eadf;
+      --ink: #17333a;
+      --muted: #647276;
+      --sea: #0b6871;
+      --sea-deep: #0b4b57;
+      --sea-soft: #d9ece9;
+      --coral: #d96e50;
+      --coral-soft: #f8e0d5;
+      --sand: #e8c47d;
+      --line: #d9ddd8;
+      --white: #ffffff;
+      --serif: "Noto Serif TC", "PingFang TC", "Songti TC", serif;
+      --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      --max: 1180px;
+      --shadow: 0 18px 45px rgba(18, 52, 58, 0.09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--sand); outline-offset: 4px; }
+
+    .site-header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid rgba(217, 221, 216, 0.9);
+      background: rgba(251, 250, 247, 0.94);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      width: min(var(--max), calc(100% - 40px));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--sea-deep);
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--sea);
+      border-radius: 50%;
+      color: var(--sea);
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--sea); }
+    .nav-pdf {
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--sea-deep);
+      color: var(--white) !important;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(9, 48, 56, 0.75) 0%, rgba(9, 48, 56, 0.32) 50%, rgba(9, 48, 56, 0.1) 100%),
+        url("旅遊資訊/1.jpg") center / cover;
+    }
+    .hero::after {
+      position: absolute;
+      right: -9vw;
+      bottom: -26vw;
+      width: 55vw;
+      height: 55vw;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 50%;
+      content: "";
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 90px 0 110px;
+    }
+    .hero-copy {
+      width: min(620px, 100%);
+      padding: clamp(28px, 5vw, 58px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.91);
+      box-shadow: var(--shadow);
+      animation: rise 0.8s both ease-out;
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--coral);
+      font-size: 0.77rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--serif); line-height: 1.25; }
+    h1 {
+      max-width: 9em;
+      margin-bottom: 22px;
+      color: var(--sea-deep);
+      font-size: clamp(2.65rem, 6vw, 5.4rem);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+    }
+    .hero-subtitle {
+      max-width: 29em;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .fact {
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--sea-deep);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border: 1px solid var(--sea-deep);
+      border-radius: 999px;
+      background: var(--sea-deep);
+      color: var(--white);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--sea); }
+    .button.secondary { background: transparent; color: var(--sea-deep); }
+    .button.secondary:hover { background: var(--sea-soft); }
+
+    .section {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 110px 0;
+    }
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+    .section-heading h2 {
+      margin-bottom: 0;
+      color: var(--sea-deep);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.05em;
+    }
+    .section-heading p {
+      max-width: 600px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--coral);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+    }
+    .source-note {
+      margin: 26px 0 0;
+      padding: 14px 18px;
+      border-left: 3px solid var(--coral);
+      background: var(--coral-soft);
+      color: #6a463c;
+      font-size: 0.88rem;
+    }
+    .source-note a { color: var(--sea-deep); font-weight: 700; }
+
+    .overview {
+      background: var(--paper-deep);
+    }
+    .overview .section { padding-top: 92px; padding-bottom: 92px; }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .overview-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 22px;
+      min-height: 176px;
+      padding: 26px;
+      border: 1px solid rgba(11, 75, 87, 0.13);
+      background: var(--paper);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+    .overview-card:hover { transform: translateY(-4px); border-color: var(--sea); }
+    .overview-day {
+      color: var(--coral);
+      font-family: Georgia, serif;
+      font-size: 3.1rem;
+      line-height: 1;
+    }
+    .overview-card h3 { margin-bottom: 8px; color: var(--sea-deep); font-size: 1.18rem; }
+    .overview-card p { margin-bottom: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .logistics { background: var(--paper); }
+    .logistics-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+      gap: 18px;
+    }
+    .panel {
+      padding: clamp(24px, 4vw, 40px);
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+    .panel-label {
+      margin-bottom: 24px;
+      color: var(--coral);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+    }
+    .panel h3 { margin-bottom: 22px; color: var(--sea-deep); font-size: 1.65rem; }
+    .flight-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .flight-table th, .flight-table td { padding: 14px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .flight-table th { color: var(--muted); font-size: 0.75rem; font-weight: 600; }
+    .flight-table td strong { display: block; color: var(--sea-deep); font-size: 1.08rem; }
+    .flight-table td small { color: var(--muted); }
+    .hotel-name { margin-bottom: 24px; font-family: var(--serif); font-size: 1.48rem; font-weight: 700; line-height: 1.45; }
+    .hotel-meta { display: grid; gap: 0; margin: 0; }
+    .hotel-meta div { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-top: 1px solid var(--line); }
+    .hotel-meta dt { color: var(--muted); font-size: 0.82rem; }
+    .hotel-meta dd { margin: 0; color: var(--sea-deep); font-weight: 700; text-align: right; }
+    .luggage {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .luggage-item { padding: 22px; background: var(--sea-soft); }
+    .luggage-item strong { display: block; color: var(--sea-deep); font-family: Georgia, serif; font-size: 2.35rem; line-height: 1; }
+    .luggage-item span { color: var(--muted); font-size: 0.82rem; }
+
+    .itinerary { background: var(--sea-deep); color: var(--white); }
+    .itinerary .section-heading h2, .itinerary .section-heading p { color: var(--white); }
+    .itinerary .section-heading p { color: rgba(255, 255, 255, 0.72); }
+    .itinerary .section-kicker { color: var(--sand); }
+    .day-list { display: grid; gap: 22px; }
+    .day-card {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      background: #f8f5ef;
+      color: var(--ink);
+    }
+    .day-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 310px;
+      padding: 30px 26px;
+      background: var(--sea);
+      color: var(--white);
+    }
+    .day-number { color: var(--sand); font-family: Georgia, serif; font-size: 3.8rem; line-height: 1; }
+    .day-date { margin: 8px 0 0; font-size: 0.9rem; font-weight: 700; }
+    .day-route { margin-top: auto; color: rgba(255, 255, 255, 0.75); font-size: 0.82rem; line-height: 1.7; }
+    .day-content { padding: clamp(24px, 4vw, 38px); }
+    .day-content h3 { margin-bottom: 9px; color: var(--sea-deep); font-size: 1.65rem; }
+    .day-lead { margin-bottom: 24px; color: var(--muted); }
+    .day-points { display: grid; gap: 13px; margin: 0 0 28px; padding: 0; list-style: none; }
+    .day-points li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: start; }
+    .day-points li::before { width: 8px; height: 8px; margin-top: 10px; border-radius: 50%; background: var(--coral); content: ""; }
+    .day-points strong { color: var(--sea-deep); }
+    .meal-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+    .meal { padding: 17px 13px 0 0; }
+    .meal + .meal { padding-left: 13px; border-left: 1px solid var(--line); }
+    .meal-label { display: block; margin-bottom: 5px; color: var(--coral); font-size: 0.74rem; font-weight: 700; }
+    .meal-name { color: var(--muted); font-size: 0.83rem; line-height: 1.6; }
+    .gift { color: var(--coral); font-weight: 700; }
+
+    .free-day {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+      gap: 18px;
+      margin-top: 22px;
+      padding: 30px;
+      background: var(--coral);
+      color: var(--white);
+    }
+    .free-day h3 { margin-bottom: 10px; color: var(--white); font-size: 1.7rem; }
+    .free-day p { margin-bottom: 0; color: rgba(255, 255, 255, 0.82); }
+    .ticket { align-self: center; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.45); }
+    .ticket strong { display: block; margin-bottom: 4px; font-family: var(--serif); font-size: 1.2rem; }
+    .ticket span { color: rgba(255, 255, 255, 0.8); font-size: 0.82rem; }
+
+    .reminders { background: var(--paper-deep); }
+    .reminder-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr); gap: 18px; }
+    .details-list { display: grid; gap: 10px; }
+    details { border-top: 1px solid var(--line); background: var(--paper); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { display: flex; justify-content: space-between; gap: 20px; padding: 20px 22px; cursor: pointer; color: var(--sea-deep); font-weight: 700; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { color: var(--coral); content: "+"; font-size: 1.35rem; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    details p, details ul { margin: 0; padding: 0 22px 22px; color: var(--muted); font-size: 0.9rem; }
+    details ul { padding-left: 42px; }
+    .reminder-aside {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      padding: 32px;
+      background: var(--sea-deep) url("旅遊資訊/3.jpg") center / cover;
+      color: var(--white);
+    }
+    .reminder-aside::before { position: absolute; inset: 0; background: rgba(11, 75, 87, 0.75); content: ""; }
+    .reminder-aside > * { position: relative; z-index: 1; }
+    .reminder-aside h3 { color: var(--white); font-size: 1.7rem; }
+    .reminder-aside p { color: rgba(255, 255, 255, 0.8); }
+    .reminder-aside .button { margin-top: 14px; border-color: var(--sand); background: var(--sand); color: var(--sea-deep); }
+    .contact-note { margin-top: 34px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.72); font-size: 0.82rem; }
+
+    .closing { padding: 100px 20px 112px; background: var(--paper); text-align: center; }
+    .closing-inner { max-width: 680px; margin: 0 auto; }
+    .closing h2 { margin-bottom: 18px; color: var(--sea-deep); font-size: clamp(2.2rem, 5vw, 4.2rem); }
+    .closing p { margin-bottom: 26px; color: var(--muted); }
+    .site-footer { padding: 28px 20px 34px; border-top: 1px solid var(--line); background: var(--paper); text-align: center; }
+    .site-footer p { margin: 0; color: var(--muted); font-size: 0.78rem; }
+    .site-footer a { color: var(--sea-deep); font-weight: 700; text-decoration: none; }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    @media (max-width: 780px) {
+      .nav { min-height: 62px; width: min(var(--max), calc(100% - 28px)); }
+      .nav-links { gap: 12px; font-size: 0.75rem; }
+      .nav-links a:not(.nav-pdf) { display: none; }
+      .hero { min-height: 640px; }
+      .hero-inner, .section { width: min(var(--max), calc(100% - 28px)); }
+      .hero-inner { padding: 66px 0 80px; }
+      .hero-copy { padding: 28px 22px; }
+      h1 { font-size: clamp(2.5rem, 15vw, 4.2rem); }
+      .section { padding: 74px 0; }
+      .section-heading, .logistics-grid, .reminder-grid { grid-template-columns: 1fr; gap: 18px; }
+      .section-heading { margin-bottom: 28px; }
+      .overview .section { padding-top: 66px; padding-bottom: 66px; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .overview-card { min-height: 150px; }
+      .flight-table { min-width: 560px; }
+      .panel:has(.flight-table) { overflow-x: auto; }
+      .day-card { grid-template-columns: 1fr; }
+      .day-side { min-height: 190px; }
+      .day-route { margin-top: 28px; }
+      .meal-strip { grid-template-columns: 1fr; }
+      .meal, .meal + .meal { padding: 14px 0 0; border-left: 0; }
+      .meal + .meal { border-top: 1px solid var(--line); }
+      .free-day { grid-template-columns: 1fr; padding: 24px; }
+      .luggage { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 430px) {
+      .brand { font-size: 0.9rem; }
+      .brand-mark { width: 32px; height: 32px; }
+      .nav-pdf { padding: 8px 11px; }
+      .hero-facts { gap: 7px; }
+      .fact { font-size: 0.75rem; }
+      .overview-card { grid-template-columns: 56px 1fr; gap: 14px; padding: 21px 18px; }
+      .overview-day { font-size: 2.5rem; }
+    }
+  </style>
 </head>
 <body>
-
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-emoji">🐠🏖️🦕</div>
-    <h1>
-      沖繩親子冒險
-      <span>2026.08.19 — 08.22 ✈ 星宇航空</span>
-    </h1>
-    <div class="hero-meta">
-      <span class="hero-tag">🛫 <a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a>出發</span>
-      <span class="hero-tag">👨‍👩‍👧‍👦 親子行程</span>
-      <span class="hero-tag">🚫 不走購物站</span>
-      <span class="hero-tag">4天3夜</span>
-    </div>
-    <div class="hero-pdf-wrap">
-      <a class="hero-pdf-btn" href="0819歡樂暢遊經典日本沖繩4日遊.pdf" download="0819歡樂暢遊經典日本沖繩4日遊.pdf">📄 下載行程 PDF</a>
-    </div>
-  </div>
-</section>
-
-<!-- Flight bar -->
-<div class="flight-bar">
-  <div class="flight-bar-flights">
-    <div class="flight-item">
-      <div class="label">去程</div>
-      <div class="value">JX312 16:40→19:10</div>
-      <span class="flight-duration">飛行約 1 小時 30 分</span>
-    </div>
-    <div class="flight-item">
-      <div class="label">回程</div>
-      <div class="value">JX313 20:10→20:50</div>
-      <span class="flight-duration">飛行約 1 小時 40 分</span>
-    </div>
-  </div>
-  <div class="flight-item flight-item--agency">
-    <div class="label">旅行社</div>
-    <div class="value"><a class="place-map" href="https://www.fifitour.com.tw/" target="_blank" rel="noopener noreferrer">大聲旅行社</a></div>
-  </div>
-  <p class="flight-tz-note">※ 起降表定時間為各機場<strong>當地時間</strong>（沖繩比台灣快 1 小時）；上方「飛行約⋯」為換算後實際航程，班表仍以航空公司為準。</p>
-</div>
-
-<!-- Nav tabs -->
-<nav class="nav-tabs" id="navTabs">
-  <div class="nav-tabs-row nav-tabs-row--tools">
-    <button type="button" class="nav-tab active" data-target="analysis">
-      <span class="day-num">📊</span>分析
-    </button>
-    <button type="button" class="nav-tab" data-target="checklist">
-      <span class="day-num">✅</span>打包
-    </button>
-  </div>
-  <div class="nav-tabs-row nav-tabs-row--days">
-    <button type="button" class="nav-tab" data-target="day1">
-      <span class="day-num">1</span>8/19
-    </button>
-    <button type="button" class="nav-tab" data-target="day2">
-      <span class="day-num">2</span>8/20
-    </button>
-    <button type="button" class="nav-tab" data-target="day3">
-      <span class="day-num">3</span>8/21
-    </button>
-    <button type="button" class="nav-tab" data-target="day4">
-      <span class="day-num">4</span>8/22
-    </button>
-  </div>
-</nav>
-
-<div class="main">
-
-  <!-- Analysis -->
-  <div class="analysis-section active" id="analysis">
-    <div class="day-header">
-      <div class="day-date">行程總覽分析</div>
-      <div class="day-title">帶小孩出遊的重點評估</div>
-    </div>
-
-    <div class="analysis-card">
-      <h3>🎯 親子友善度評分</h3>
-      <div class="score-bar">
-        <span class="score-label">景點趣味</span>
-        <div class="score-track"><div class="score-fill" style="width:90%;background:var(--ocean)"></div></div>
-        <span class="score-value" style="color:var(--ocean)">9/10</span>
+  <header class="site-header">
+    <nav class="nav" aria-label="主要導覽">
+      <a class="brand" href="#top"><span class="brand-mark">O</span><span>小田田家族・沖繩 2026</span></a>
+      <div class="nav-links">
+        <a href="#logistics">航班住宿</a>
+        <a href="#itinerary">每日行程</a>
+        <a href="#reminders">行前提醒</a>
+        <a class="nav-pdf" href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>下載 PDF</a>
       </div>
-      <div class="score-bar">
-        <span class="score-label">行程鬆緊</span>
-        <div class="score-track"><div class="score-fill" style="width:85%;background:var(--palm)"></div></div>
-        <span class="score-value" style="color:var(--palm)">8.5</span>
-      </div>
-      <div class="score-bar">
-        <span class="score-label">餐食安排</span>
-        <div class="score-track"><div class="score-fill" style="width:70%;background:var(--sunset)"></div></div>
-        <span class="score-value" style="color:var(--sunset)">7/10</span>
-      </div>
-      <div class="score-bar">
-        <span class="score-label">飯店位置</span>
-        <div class="score-track"><div class="score-fill" style="width:75%;background:var(--coral)"></div></div>
-        <span class="score-value" style="color:var(--coral)">7.5</span>
-      </div>
-      <div class="score-bar">
-        <span class="score-label">自由度</span>
-        <div class="score-track"><div class="score-fill" style="width:90%;background:var(--ocean-deep)"></div></div>
-        <span class="score-value" style="color:var(--ocean-deep)">9/10</span>
-      </div>
-    </div>
+    </nav>
+  </header>
 
-    <div class="analysis-card">
-      <h3>👍 優點 vs ⚠️ 注意事項</h3>
-      <div class="pro-con">
-        <ul class="pro-list">
-          <li>全程不走購物站，親子友善</li>
-          <li><a class="place-map" href="https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7" target="_blank" rel="noopener noreferrer">水族館</a>+恐龍公園+<a class="place-map" href="https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8" target="_blank" rel="noopener noreferrer">鳳梨園</a>，孩子超愛</li>
-          <li>第三天全日自由活動＋電車券，超彈性</li>
-          <li>星宇航空服務品質好</li>
-          <li>不走免稅店不浪費時間</li>
-        </ul>
-        <ul class="con-list">
-          <li>飯店寫「或同級」，出發前要確認</li>
-          <li>第一天傍晚才到，等於只剩晚上</li>
-          <li>第三天午晚餐自理，帶小孩要先想好</li>
-          <li>8月沖繩很熱，注意防曬補水</li>
-          <li>回程 20:10 <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸</a>起飛、飛行約 1 小時 40 分，小孩可能很累</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tips-panel">
-      <h3>💡 帶小孩的實用建議</h3>
-      <ul>
-        <li><a class="place-map" href="https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7" target="_blank" rel="noopener noreferrer">水族館</a>建議先看海豚秀時間表，提早卡位</li>
-        <li>第三天自由活動推薦搭電車去<a class="place-map" href="https://maps.app.goo.gl/nHDxnPEirHicPrX57" target="_blank" rel="noopener noreferrer">首里城</a>，小孩可以體驗沖繩歷史</li>
-        <li>隨身帶輕便推車，<a class="place-map" href="https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8" target="_blank" rel="noopener noreferrer">鳳梨園</a>和<a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">Outlet</a>範圍都很大</li>
-        <li><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a>的<a class="place-map" href="https://maps.app.goo.gl/f8VhkLtAA3AkLJXy7" target="_blank" rel="noopener noreferrer">第一牧志公設市場</a>二樓有親子友善餐廳</li>
-        <li><a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島</a>適合拍照但階梯多，帶幼兒要注意</li>
-        <li>便利商店的兒童飲料和零食選擇很多，可當補給站</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Day 1 -->
-  <div class="day-section" id="day1">
-    <div class="day-header">
-      <div class="day-date">2026年8月19日（三）</div>
-      <div class="day-title">出發！飛向沖繩</div>
-      <div class="day-subtitle"><a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a> → <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></div>
-    </div>
-
-    <div class="day-map-wrap" aria-label="第一天行程地圖">
-      <div class="day-map-head">
-        <span class="day-map-title">🗺️ 第一天 · 景點與住宿參考位置</span>
-        <span class="day-map-hint">數字為建議順序 · 點圓標開啟 Google 地圖</span>
-      </div>
-      <div id="map-day1" class="day-map" role="img" aria-label="地圖：台中機場、那霸空港、那霸飯店"></div>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot spot"></div>
-        <div class="card">
-          <span class="card-type spot">✈️ 交通</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a>集合 → 搭乘星宇 JX312</h3>
-          <p>16:40 <a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a>起飛，19:10 <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a>當地抵達，飛行約 1 小時 30 分。提前 2 小時到機場辦理手續，帶小孩建議再早半小時。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">👶 帶推車可到登機門</span>
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">OKA04JX260819XQ ・ FAMILY TRIP</p>
+          <h1 id="page-title">蔚藍沖繩<br>旅遊手冊</h1>
+          <p class="hero-subtitle">小田田家族的四天三夜。從台中出發，沿著海洋博、鳳梨園、國際通與南部海岸，把夏天收進行李裡。</p>
+          <div class="hero-facts" aria-label="旅程摘要">
+            <span class="fact">2026.08.19 — 08.22</span>
+            <span class="fact">台中 RMQ ⇄ 那霸 OKA</span>
+            <span class="fact">星宇航空 JX312／JX313</span>
           </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d1-flight" placeholder="例：記得帶兒童護照、抵達後先換日幣..."></textarea>
+          <div class="hero-actions">
+            <a class="button" href="#itinerary">查看四天行程</a>
+            <a class="button secondary" href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>下載最終行程 PDF</a>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="timeline-item">
-        <div class="timeline-dot food"></div>
-        <div class="card">
-          <span class="card-type gift">🎁 贈送</span>
-          <h3>沖繩豬肉蛋飯糰</h3>
-          <p>抵達後發送沖繩必吃招牌小吃！機上也有簡易餐食。</p>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d1-food" placeholder="小孩吃不吃得慣？要不要另外準備..."></textarea>
+    <section class="overview" id="overview">
+      <div class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">THE TRIP AT A GLANCE</p>
+            <h2>先把四天看懂</h2>
           </div>
+          <p>這一版只保留大聲旅行社提供的最終旅遊資料。每天的主軸、餐食與自由活動，先在這裡快速掃過，再往下看完整細節。</p>
+        </div>
+        <div class="overview-grid">
+          <a class="overview-card" href="#day-1">
+            <span class="overview-day">01</span>
+            <div><h3>抵達那霸，先安頓</h3><p>台中飛往沖繩，入住那霸市區；晚間自由探訪便利商店與沖繩超市。</p></div>
+          </a>
+          <a class="overview-card" href="#day-2">
+            <span class="overview-day">02</span>
+            <div><h3>海洋博與鳳梨園</h3><p>海豚表演、美之海水族館、名護鳳梨園，晚間回到國際通逛街。</p></div>
+          </a>
+          <a class="overview-card" href="#day-3">
+            <span class="overview-day">03</span>
+            <div><h3>神宮、Outlet、瀨長島</h3><p>波之上神宮、ASHIBINAA OUTLET 與瀨長島屋台村小希臘風情。</p></div>
+          </a>
+          <a class="overview-card" href="#day-4">
+            <span class="overview-day">04</span>
+            <div><h3>自由活動，平安回家</h3><p>贈送單軌電車一日券，自由安排那霸市區行程，再前往那霸空港返台。</p></div>
+          </a>
+        </div>
+        <p class="source-note">內容來源：2026 年 8 月 5 日大聲旅行社提供之「小田田家族 2026 年蔚藍沖繩旅遊」旅遊資料。若旅途中遇交通、天候或其他不可抗力，實際安排以領隊與行前說明為準；<a href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>完整文件請下載 PDF</a>。</p>
+      </div>
+    </section>
+
+    <section class="logistics" id="logistics">
+      <div class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">BEFORE YOU FLY</p>
+            <h2>出發前先記好</h2>
+          </div>
+          <p>集合地點、航班、住宿與行李規定，是出發當天最需要快速找到的資訊。以下內容照最終旅遊資料整理。</p>
+        </div>
+        <div class="logistics-grid">
+          <div class="panel">
+            <p class="panel-label">FLIGHT INFORMATION</p>
+            <h3>台中 ⇄ 那霸</h3>
+            <table class="flight-table">
+              <thead><tr><th>日期</th><th>航班</th><th>起飛</th><th>抵達</th></tr></thead>
+              <tbody>
+                <tr><td><strong>8/19（三）</strong><small>出發日</small></td><td><strong>JX312</strong><small>星宇航空</small></td><td><strong>16:40</strong><small>台中 RMQ</small></td><td><strong>19:10</strong><small>沖繩 OKA</small></td></tr>
+                <tr><td><strong>8/22（六）</strong><small>返台日</small></td><td><strong>JX313</strong><small>星宇航空</small></td><td><strong>20:10</strong><small>沖繩 OKA</small></td><td><strong>20:50</strong><small>台中 RMQ</small></td></tr>
+              </tbody>
+            </table>
+            <div class="luggage" aria-label="行李規定">
+              <div class="luggage-item"><strong>23 kg</strong><span>託運行李：每件計算，不可合併</span></div>
+              <div class="luggage-item"><strong>7 kg</strong><span>手提隨身行李：每人限重</span></div>
+            </div>
+          </div>
+          <aside class="panel">
+            <p class="panel-label">ACCOMMODATION</p>
+            <h3>三晚住在那霸</h3>
+            <p class="hotel-name">那霸社區及 SPA 中央酒店（別館）<br><span lang="en">Community &amp; Spa Naha Central Hotel</span></p>
+            <dl class="hotel-meta">
+              <div><dt>住宿日期</dt><dd>8/19 — 8/21</dd></div>
+              <div><dt>入住晚數</dt><dd>3 晚</dd></div>
+              <div><dt>飯店電話</dt><dd>+81 98 862 6070</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <p class="source-note">集合資訊：2026 年 8 月 19 日（三）14:10，台中清泉崗機場國際航廈台灣人壽前集合。出發前請再依領隊與航空公司公告確認報到櫃台、班機與行李規定。</p>
+      </div>
+    </section>
+
+    <section class="itinerary" id="itinerary">
+      <div class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">FOUR DAYS IN OKINAWA</p>
+            <h2>每天怎麼走</h2>
+          </div>
+          <p>一條由北到南、再回到那霸的旅程。餐食照行程表標示；「方便逛街，敬請自理」代表當日不安排團體餐。</p>
+        </div>
+        <div class="day-list">
+          <article class="day-card" id="day-1">
+            <div class="day-side"><div><div class="day-number">01</div><p class="day-date">8/19（三）・出發日</p></div><p class="day-route">台中清泉崗機場<br>→ 那霸空港<br>→ 那霸市區</p></div>
+            <div class="day-content">
+              <h3>抵達那霸，先把旅程放慢</h3>
+              <p class="day-lead">下午集合、搭乘 JX312 前往沖繩；抵達後入住那霸市區，晚上保留一點自由探索的時間。</p>
+              <ul class="day-points">
+                <li><span><strong>台中機場 → 沖繩那霸空港</strong><br>16:40 起飛，19:10 抵達。</span></li>
+                <li><span class="gift">贈送：沖繩必吃招牌「沖繩豬肉蛋飯糰」</span></li>
+                <li><span><strong>住宿：</strong>那霸市區 Community &amp; Spa Naha Central Hotel（別館）</span></li>
+                <li><span>晚間自由探訪便利商店、沖繩超市。</span></li>
+              </ul>
+              <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">溫暖的家</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">溫暖的家</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">機上簡易餐食＋贈送沖繩豬肉蛋飯糰</span></div></div>
+            </div>
+          </article>
+
+          <article class="day-card" id="day-2">
+            <div class="day-side"><div><div class="day-number">02</div><p class="day-date">8/20（四）・北部探索</p></div><p class="day-route">海洋博紀念公園<br>→ 名護鳳梨園<br>→ 那霸國際通</p></div>
+            <div class="day-content">
+              <h3>把海的藍，走進北部</h3>
+              <p class="day-lead">從海洋博紀念公園出發，看海豚表演與珊瑚七色海；午後走進鳳梨園，晚上回到國際通購物。</p>
+              <ul class="day-points">
+                <li><span><strong>海洋博紀念公園</strong>：海豚表演秀、眺望珊瑚七色海、沖繩美之海水族館。</span></li>
+                <li><span><strong>沖繩名護鳳梨園</strong>：可愛無人鳳梨車、恐龍公園、質感酒莊。</span></li>
+                <li><span><strong>自由前往那霸國際通大道</strong>：逛街購物趣。</span></li>
+              </ul>
+              <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">飯店內享用</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">百年大家定食或日式自助餐</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">日式燒肉吃到飽＋飲料喝到飽（燒肉五苑）或同級</span></div></div>
+            </div>
+          </article>
+
+          <article class="day-card" id="day-3">
+            <div class="day-side"><div><div class="day-number">03</div><p class="day-date">8/21（五）・南部散策</p></div><p class="day-route">波之上神宮<br>→ ASHIBINNAA OUTLET<br>→ 瀨長島屋台村</p></div>
+            <div class="day-content">
+              <h3>神社、海風與最後一站購物</h3>
+              <p class="day-lead">從海邊斷崖上的神宮開始，接著到沖繩暢貨中心購物，最後在瀨長島收進一段小希臘風情。</p>
+              <ul class="day-points">
+                <li><span><strong>波之上神宮</strong>：佇立於海邊斷崖之琉球第一神社。</span></li>
+                <li><span><strong>沖繩暢貨中心 ASHIBINNAA OUTLET</strong>：打到骨折血拚購物趣。</span></li>
+                <li><span><strong>瀨長島屋台村</strong>：感受小希臘風情。</span></li>
+              </ul>
+              <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">飯店內享用</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">沖繩特色風味料理</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">方便逛街，敬請自理</span></div></div>
+            </div>
+          </article>
+
+          <article class="day-card" id="day-4">
+            <div class="day-side"><div><div class="day-number">04</div><p class="day-date">8/22（六）・返台日</p></div><p class="day-route">那霸市區自由活動<br>→ 那霸空港<br>→ 台中機場</p></div>
+            <div class="day-content">
+              <h3>留一整天，照自己的節奏</h3>
+              <p class="day-lead">最後一天不排固定景點，讓每個人依照自己的需求自由逛街，再搭乘專車前往機場。</p>
+              <ul class="day-points">
+                <li><span class="gift">贈送：單軌電車一日券。</span></li>
+                <li><span><strong>全日自由活動</strong>：可自由前往國際通大道或新都心，安排逛街購物。</span></li>
+                <li><span><strong>專車前往那霸空港</strong>，前往沖繩那霸空港商店街，再搭乘 JX313 返台。</span></li>
+              </ul>
+              <div class="meal-strip"><div class="meal"><span class="meal-label">早餐</span><span class="meal-name">飯店內享用</span></div><div class="meal"><span class="meal-label">午餐</span><span class="meal-name">方便逛街，敬請自理</span></div><div class="meal"><span class="meal-label">晚餐</span><span class="meal-name">機上簡易餐食</span></div></div>
+            </div>
+          </article>
+        </div>
+        <div class="free-day">
+          <div><h3>第四天，把選擇留給家人</h3><p>單軌電車一日券是這趟旅程的最後一份贈送。國際通或新都心，依大家當天的心情出發。</p></div>
+          <div class="ticket"><strong>MONORAIL DAY PASS</strong><span>贈送・沖繩單軌電車一日券</span></div>
         </div>
       </div>
+    </section>
 
-      <div class="timeline-item">
-        <div class="timeline-dot hotel"></div>
-        <div class="card">
-          <span class="card-type hotel">🏨 住宿</span>
-          <h3>那霸市區飯店</h3>
-          <p><a class="place-map" href="https://maps.app.goo.gl/1aTooC6jyBXeztBK8" target="_blank" rel="noopener noreferrer">Hotel Azat</a> / <a class="place-map" href="https://maps.app.goo.gl/gecKfrw46ZyWGzU6A" target="_blank" rel="noopener noreferrer">南西觀光</a> / <a class="place-map" href="https://maps.app.goo.gl/cXUhFHVBLrknKvWB9" target="_blank" rel="noopener noreferrer">Community &amp; Spa 中央酒店(別館)</a> / <a class="place-map" href="https://maps.app.goo.gl/i4gZzwtj7GyCQ5q97" target="_blank" rel="noopener noreferrer">Hotel Lantana</a> / <a class="place-map" href="https://maps.app.goo.gl/xmenL6AR6Sxz78BTA" target="_blank" rel="noopener noreferrer">沖繩RJ</a> 或同級</p>
-          <div class="card-tags">
-            <span class="card-tag">⚠️ 確認實際入住哪間</span>
-            <span class="card-tag kid">👶 問有無嬰兒床</span>
+    <section class="reminders" id="reminders">
+      <div class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">TRAVEL NOTES</p>
+            <h2>行前提醒</h2>
           </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d1-hotel" placeholder="確認飯店名稱、地址..."></textarea>
+          <p>這裡整理出最需要在手機上快速查找的重點；完整注意事項、契約與旅行社說明，請以原始 PDF 及領隊通知為準。</p>
+        </div>
+        <div class="reminder-grid">
+          <div class="details-list">
+            <details open>
+              <summary>護照與集合</summary>
+              <p>護照效期需較回國日期延長六個月以上，且保持完整無污損。8/19 14:10 於台中清泉崗機場國際航廈台灣人壽前集合；請依領隊與航空公司公告提早抵達辦理手續。</p>
+            </details>
+            <details>
+              <summary>行李與海關</summary>
+              <p>星宇航空國際段每件託運行李不超過 23 公斤，不能合併計算；手提隨身行李 7 公斤。不要替他人攜帶不明物品，出入境時請確實申告攜帶物品。</p>
+            </details>
+            <details>
+              <summary>團體旅遊與行程調整</summary>
+              <p>請遵守團體集合時間，旅遊期間無法接受脫隊要求。若遇塞車、天災或其他不可抗力，旅行社可能在不變更行程內容的前提下調整順序、餐食或交通安排，以安全順暢為優先。</p>
+            </details>
+            <details>
+              <summary>住宿與個人安全</summary>
+              <p>貴重物品請隨身攜帶；入住後確認緊急出口與逃生路線。飯店公共區域及房間禁菸，請遵守飯店設施與入住規定，避免產生額外罰金或賠償。</p>
+            </details>
+            <details>
+              <summary>特殊需求與餐食</summary>
+              <p>行動不便、攜嬰幼兒、孕婦、特殊餐食、單人房或其他需求，請及早告知旅行社。海外團體餐食安排與台灣不同，特殊餐食旅客可依需要自行準備備用食品。</p>
+            </details>
           </div>
+          <aside class="reminder-aside">
+            <h3>完整資料，留在手邊</h3>
+            <p>網站是方便旅途中快速查看的版本。正式團體資料、領隊資訊與完整行前說明，請同時保存旅行社提供的 PDF。</p>
+            <a class="button" href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>下載正式旅遊資料</a>
+            <p class="contact-note">航班、飯店、餐食與行程順序如有臨時異動，請以領隊、航空公司與旅行社最新通知為準。</p>
+          </aside>
         </div>
       </div>
+    </section>
 
-      <div class="timeline-item">
-        <div class="timeline-dot free"></div>
-        <div class="card">
-          <span class="card-type free">🌙 自由時間</span>
-          <h3>自由探訪便利商店、沖繩超市</h3>
-          <p>到飯店安頓好後可以帶小孩到附近超市和便利商店逛逛，買些飲料零食。沖繩超市有很多當地限定商品。</p>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d1-free" placeholder="想去哪間超市？要買什麼？"></textarea>
-          </div>
-        </div>
+    <section class="closing">
+      <div class="closing-inner">
+        <p class="eyebrow">SEE YOU IN OKINAWA</p>
+        <h2>帶著期待出發，<br>平安回家。</h2>
+        <p>2026 年 8 月 19 日，台中清泉崗機場見。</p>
+        <a class="button" href="#top">回到頁首</a>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="meal-grid">
-      <div class="meal-card">
-        <div class="meal-type">晚餐</div>
-        <div class="meal-name">機上簡易餐食 + 豬肉蛋飯糰</div>
-        <div class="meal-price">含在團費中</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Day 2 -->
-  <div class="day-section" id="day2">
-    <div class="day-header">
-      <div class="day-date">2026年8月20日（四）</div>
-      <div class="day-title">水族館 × 恐龍公園 大冒險</div>
-      <div class="day-subtitle">沖繩北部探索 → 那霸<a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></div>
-    </div>
-
-    <div class="day-map-wrap" aria-label="第二天行程地圖">
-      <div class="day-map-head">
-        <span class="day-map-title">🗺️ 第二天 · 團體路線（虛線為參訪順序示意）</span>
-        <span class="day-map-hint">實際車程以導遊／導航為準</span>
-      </div>
-      <div id="map-day2" class="day-map" role="img" aria-label="地圖：美麗海、鳳梨園、國際通"></div>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot spot"></div>
-        <div class="card">
-          <span class="card-type spot">🐬 景點</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/NKXiLebxi3aaK5aNA" target="_blank" rel="noopener noreferrer">海洋博公園</a> ＆ <a class="place-map" href="https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7" target="_blank" rel="noopener noreferrer">美麗海水族館</a></h3>
-          <p>全球大規模水族館之一，650種約75,000隻海洋生物。依海洋深度分層展示，還有精彩的海豚表演秀！可以眺望珊瑚七色海。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">🐠 小孩必看黑潮之海</span>
-            <span class="card-tag kid">🐬 先查海豚秀時間</span>
-            <span class="card-tag">📷 拍照重點</span>
-          </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d2-aqua" placeholder="海豚秀時間、想買什麼紀念品..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot spot"></div>
-        <div class="card">
-          <span class="card-type spot">🦕 景點</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8" target="_blank" rel="noopener noreferrer">名護鳳梨園（含恐龍公園）</a></h3>
-          <p>超可愛無人鳳梨造型駕使車、充滿綠意的園區，還有新加入的恐龍公園與質感酒莊。大人小孩都能玩得開心！最後可品嚐新鮮鳳梨。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">🚗 鳳梨車超可愛</span>
-            <span class="card-tag kid">🦕 恐龍公園必拍</span>
-            <span class="card-tag">🍍 鳳梨伴手禮</span>
-          </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d2-pine" placeholder="想買鳳梨相關伴手禮？..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot free"></div>
-        <div class="card">
-          <span class="card-type free">🛍️ 自由活動</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通大道</a>逛街</h3>
-          <p>全長1.6公里的「奇蹟大街」，百貨、餐廳、土特產店林立。帶小孩可以逛逛<a class="place-map" href="https://maps.app.goo.gl/f8VhkLtAA3AkLJXy7" target="_blank" rel="noopener noreferrer">牧志公設市場</a>，體驗沖繩在地文化。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">🍦 有很多小吃攤</span>
-            <span class="card-tag">🎒 土產伴手禮</span>
-          </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d2-kokusai" placeholder="想逛哪些店、想買什麼..."></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="meal-grid">
-      <div class="meal-card">
-        <div class="meal-type">早餐</div>
-        <div class="meal-name">飯店內享用</div>
-        <div class="meal-price">含在團費</div>
-      </div>
-      <div class="meal-card">
-        <div class="meal-type">午餐</div>
-        <div class="meal-name">百年大家定食 或 日式自助餐</div>
-        <div class="meal-price">¥1,980</div>
-      </div>
-      <div class="meal-card">
-        <div class="meal-type">晚餐</div>
-        <div class="meal-name">燒肉五苑 吃到飽＋飲料喝到飽</div>
-        <div class="meal-price">¥4,000</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Day 3 -->
-  <div class="day-section" id="day3">
-    <div class="day-header">
-      <div class="day-date">2026年8月21日（五）</div>
-      <div class="day-title">自由冒險日</div>
-      <div class="day-subtitle">贈送單軌電車一日券 🚝</div>
-    </div>
-
-    <div class="day-map-wrap" aria-label="第三天行程地圖">
-      <div class="day-map-head">
-        <span class="day-map-title">🗺️ 第三天 · 自由日（三色為 A／B／C 建議路線）</span>
-        <span class="day-map-hint">可擇一路線走，不必全去</span>
-      </div>
-      <div id="map-day3" class="day-map" role="img" aria-label="地圖：首里城、購物、浦添路線"></div>
-    </div>
-
-    <div class="tips-panel">
-      <h3>🎫 電車一日券可以去的地方</h3>
-      <ul>
-        <li><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通大道</a> — 各電車站下車都可逛</li>
-        <li><a class="place-map" href="https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7" target="_blank" rel="noopener noreferrer">新都心</a> — DFS、天久樂市商場</li>
-        <li>小祿站 — <a class="place-map" href="https://maps.app.goo.gl/wfV52WwLwcMhLSUR7" target="_blank" rel="noopener noreferrer">那霸 AEON MALL Okinawa Rycom</a></li>
-        <li>首里站 — <a class="place-map" href="https://maps.app.goo.gl/nHDxnPEirHicPrX57" target="_blank" rel="noopener noreferrer">首里城公園</a>（世界文化遺產）</li>
-        <li>安里站 — <a class="place-map" href="https://maps.app.goo.gl/JqbjpN2LByFWTPEK7" target="_blank" rel="noopener noreferrer">榮町市場</a>（懷舊商圈）</li>
-        <li>牧志站 — <a class="place-map" href="https://maps.app.goo.gl/f8VhkLtAA3AkLJXy7" target="_blank" rel="noopener noreferrer">牧志市場</a>、市場本通（沖繩人的廚房）</li>
-      </ul>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot free"></div>
-        <div class="card">
-          <span class="card-type free">🎯 推薦路線 A</span>
-          <h3>文化探索：<a class="place-map" href="https://maps.app.goo.gl/nHDxnPEirHicPrX57" target="_blank" rel="noopener noreferrer">首里城</a> → <a class="place-map" href="https://maps.app.goo.gl/JqbjpN2LByFWTPEK7" target="_blank" rel="noopener noreferrer">榮町市場</a> → <a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></h3>
-          <p>適合想帶小孩認識沖繩歷史的家庭。<a class="place-map" href="https://maps.app.goo.gl/nHDxnPEirHicPrX57" target="_blank" rel="noopener noreferrer">首里城公園</a>範圍大但有平坦步道，<a class="place-map" href="https://maps.app.goo.gl/JqbjpN2LByFWTPEK7" target="_blank" rel="noopener noreferrer">榮町市場</a>可以體驗在地生活感。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">🏯 世界遺產教育意義</span>
-          </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d3-routeA" placeholder="要走這條路線嗎？"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot free"></div>
-        <div class="card">
-          <span class="card-type free">🎯 推薦路線 B</span>
-          <h3>購物休閒：<a class="place-map" href="https://maps.app.goo.gl/wfV52WwLwcMhLSUR7" target="_blank" rel="noopener noreferrer">AEON MALL Okinawa Rycom</a> → <a class="place-map" href="https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7" target="_blank" rel="noopener noreferrer">新都心</a> → <a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a></h3>
-          <p>適合想輕鬆購物的家庭。AEON 有超市和兒童遊樂區，新都心有 DFS 免稅店。</p>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d3-routeB" placeholder="想去哪些店？"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot free"></div>
-        <div class="card">
-          <span class="card-type free">🎯 推薦路線 C</span>
-          <h3>購物狂：<a class="place-map" href="https://maps.app.goo.gl/fQJ9r5263PZn8Fnq8" target="_blank" rel="noopener noreferrer">浦添西海岸</a> <a class="place-map" href="https://maps.app.goo.gl/kapmkTsQvwE7XTbN8" target="_blank" rel="noopener noreferrer">PARCO CITY</a> / <a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">ASHIBINAA Outlet</a></h3>
-          <p>需搭計程車或巴士。<a class="place-map" href="https://maps.app.goo.gl/kapmkTsQvwE7XTbN8" target="_blank" rel="noopener noreferrer">PARCO CITY</a>很大有兒童區，ASHIBINAA有超過100個品牌。</p>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d3-routeC" placeholder="交通方式、預算..."></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="meal-grid">
-      <div class="meal-card">
-        <div class="meal-type">早餐</div>
-        <div class="meal-name">飯店內享用</div>
-        <div class="meal-price">含在團費</div>
-      </div>
-      <div class="meal-card" style="border:2px dashed var(--coral)">
-        <div class="meal-type" style="color:var(--coral)">午餐 ⚠️</div>
-        <div class="meal-name">自理</div>
-        <div class="meal-price">建議先想好去哪吃</div>
-      </div>
-      <div class="meal-card" style="border:2px dashed var(--coral)">
-        <div class="meal-type" style="color:var(--coral)">晚餐 ⚠️</div>
-        <div class="meal-name">自理</div>
-        <div class="meal-price"><a class="place-map" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通</a>選擇很多</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Day 4 -->
-  <div class="day-section" id="day4">
-    <div class="day-header">
-      <div class="day-date">2026年8月22日（六）</div>
-      <div class="day-title">最後衝刺＆回家</div>
-      <div class="day-subtitle"><a class="place-map" href="https://maps.app.goo.gl/LGKiPsZ3WQAY95d36" target="_blank" rel="noopener noreferrer">波之上神宮</a> → <a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">Outlet</a> → <a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島</a> → <a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></div>
-    </div>
-
-    <div class="day-map-wrap" aria-label="第四天行程地圖">
-      <div class="day-map-head">
-        <span class="day-map-title">🗺️ 第四天 · 回程前動線</span>
-        <span class="day-map-hint">虛線為建議參訪順序</span>
-      </div>
-      <div id="map-day4" class="day-map" role="img" aria-label="地圖：波上、Outlet、瀨長島、那霸空港"></div>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot spot"></div>
-        <div class="card">
-          <span class="card-type spot">⛩️ 景點</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/LGKiPsZ3WQAY95d36" target="_blank" rel="noopener noreferrer">波之上神宮</a></h3>
-          <p>佇立於海邊斷崖的琉球第一神社，在琉球八社中排名第一。也是那霸市史蹟文化遺產。可以帶小孩體驗日式參拜文化。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">⛩️ 可以求御守當紀念</span>
-            <span class="card-tag">📷 斷崖海景超美</span>
-          </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d4-shrine" placeholder="想求什麼御守？"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot free"></div>
-        <div class="card">
-          <span class="card-type spot">🛍️ 購物</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/18vT41R8GX5xvN1c7" target="_blank" rel="noopener noreferrer">ASHIBINAA Outlet</a></h3>
-          <p>超過100家世界品牌進駐的Outlet購物城，COACH、MARC JACOBS等精品以折扣價入手。最後的購物衝刺機會！</p>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d4-outlet" placeholder="想買什麼品牌？預算？"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot spot"></div>
-        <div class="card">
-          <span class="card-type spot">🏝️ 景點</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島 Umikaji Terrace</a></h3>
-          <p>小希臘風情的白色建築群，結合美食、遊樂、療癒的島嶼度假村。距離機場僅15分鐘，是最後放鬆的好去處。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">📷 白色建築超好拍</span>
-            <span class="card-tag">⚠️ 階梯多注意幼兒</span>
-          </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d4-senaga" placeholder="想在這裡吃什麼？"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot spot"></div>
-        <div class="card">
-          <span class="card-type spot">✈️ 回程</span>
-          <h3><a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a> → <a class="place-map" href="https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA" target="_blank" rel="noopener noreferrer">台中機場</a> (JX313)</h3>
-          <p>20:10 那霸當地起飛，20:50 台中當地抵達，飛行約 1 小時 40 分。建議提前在<a class="place-map" href="https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA" target="_blank" rel="noopener noreferrer">瀨長島</a>或<a class="place-map" href="https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a>商店街買完最後的伴手禮。</p>
-          <div class="card-tags">
-            <span class="card-tag kid">👶 小孩可能很累，準備小毯子</span>
-          </div>
-          <div class="note-area">
-            <label><span>📝 我的筆記</span><span class="note-hint">僅存於本機瀏覽器，換裝置或清除網站資料後不會保留。</span></label>
-            <textarea data-key="d4-return" placeholder="機場還想買什麼？"></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="meal-grid">
-      <div class="meal-card">
-        <div class="meal-type">早餐</div>
-        <div class="meal-name">飯店內享用</div>
-        <div class="meal-price">含在團費</div>
-      </div>
-      <div class="meal-card">
-        <div class="meal-type">午餐</div>
-        <div class="meal-name">沖繩特色風味料理</div>
-        <div class="meal-price">¥2,500</div>
-      </div>
-      <div class="meal-card">
-        <div class="meal-type">晚餐</div>
-        <div class="meal-name">機上簡易餐食</div>
-        <div class="meal-price">含在團費</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Checklist -->
-  <div class="day-section" id="checklist">
-    <div class="day-header">
-      <div class="day-date">出發準備</div>
-      <div class="day-title">親子出遊打包清單</div>
-    </div>
-
-    <div class="checklist" id="checklistKids">
-      <h3>👶 兒童必備</h3>
-      <div class="check-items"></div>
-      <div class="add-item-row">
-        <input type="text" placeholder="新增項目..." class="new-item-input">
-        <button class="add-btn" onclick="addCheckItem('checklistKids')">+</button>
-      </div>
-    </div>
-
-    <div class="checklist" id="checklistDocs">
-      <h3>📄 證件文件</h3>
-      <div class="check-items"></div>
-      <div class="add-item-row">
-        <input type="text" placeholder="新增項目..." class="new-item-input">
-        <button class="add-btn" onclick="addCheckItem('checklistDocs')">+</button>
-      </div>
-    </div>
-
-    <div class="checklist" id="checklistDaily">
-      <h3>🧳 日用品</h3>
-      <div class="check-items"></div>
-      <div class="add-item-row">
-        <input type="text" placeholder="新增項目..." class="new-item-input">
-        <button class="add-btn" onclick="addCheckItem('checklistDaily')">+</button>
-      </div>
-    </div>
-
-    <div class="checklist" id="checklistOther">
-      <h3>💡 其他提醒</h3>
-      <div class="check-items"></div>
-      <div class="add-item-row">
-        <input type="text" placeholder="新增項目..." class="new-item-input">
-        <button class="add-btn" onclick="addCheckItem('checklistOther')">+</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<footer class="site-footer">
-  <p class="site-footer__brand">WEDO International Marketing Group</p>
-  <p class="site-footer__tagline"><a href="https://www.wedopr.com/" target="_blank" rel="noopener noreferrer">The Best Things We Do</a></p>
-</footer>
-
-<div class="save-toast" id="saveToast">✓ 已儲存</div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script>
-(function () {
-  const esc = (s) => String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;');
-
-  function mapPopup(label, url) {
-    return `<div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;line-height:1.5"><strong>${esc(label)}</strong><br><a href="${esc(url)}" target="_blank" rel="noopener noreferrer" style="color:#0077B6;font-weight:600">Google 地圖</a></div>`;
-  }
-
-  function numIcon(n, fill) {
-    const s = String(n);
-    const fs = s.length > 1 ? 10 : 13;
-    return L.divIcon({
-      className: 'day-map-num-outer',
-      html: `<span class="day-map-num-inner" style="background:${fill};font-size:${fs}px">${s}</span>`,
-      iconSize: [28, 28],
-      iconAnchor: [14, 14]
-    });
-  }
-
-  const OSM = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-  const OSM_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
-
-  const DAY_MAPS = {
-    day1: {
-      markers: [
-        { n: 1, lat: 24.2647, lng: 120.6206, label: '台中機場（出發）', url: 'https://maps.app.goo.gl/Vp55rVBmiFtBGd3JA', fill: '#023E8A' },
-        { n: 2, lat: 26.196, lng: 127.6461, label: '那霸空港（抵達）', url: 'https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6', fill: '#0077B6' },
-        { n: 3, lat: 26.2156, lng: 127.6793, label: 'Hotel Azat', url: 'https://maps.app.goo.gl/1aTooC6jyBXeztBK8', fill: '#2D6A4F' },
-        { n: 4, lat: 26.2142, lng: 127.679, label: '南西觀光', url: 'https://maps.app.goo.gl/gecKfrw46ZyWGzU6A', fill: '#2D6A4F' },
-        { n: 5, lat: 26.218, lng: 127.6845, label: 'Community & Spa 中央酒店(別館)', url: 'https://maps.app.goo.gl/cXUhFHVBLrknKvWB9', fill: '#2D6A4F' },
-        { n: 6, lat: 26.2092, lng: 127.68, label: 'Hotel Lantana', url: 'https://maps.app.goo.gl/i4gZzwtj7GyCQ5q97', fill: '#2D6A4F' },
-        { n: 7, lat: 26.2108, lng: 127.6815, label: '沖繩RJ', url: 'https://maps.app.goo.gl/xmenL6AR6Sxz78BTA', fill: '#2D6A4F' }
-      ],
-      lines: [
-        { latlngs: [[24.2647, 120.6206], [26.196, 127.6461]], color: '#0077B6', dash: '10 14', weight: 3 },
-        { latlngs: [[26.196, 127.6461], [26.2139, 127.6792]], color: '#2D6A4F', dash: '6 10', weight: 3 }
-      ]
-    },
-    day2: {
-      markers: [
-        { n: 1, lat: 26.6945, lng: 127.8789, label: '海洋博公園 ＆ 美麗海水族館', url: 'https://maps.app.goo.gl/KVHD4HaFS7RWYbaD7', fill: '#023E8A' },
-        { n: 2, lat: 26.5958, lng: 127.9775, label: '名護鳳梨園（含恐龍公園）', url: 'https://maps.app.goo.gl/dt3ncSp5ggTxxLGX8', fill: '#0077B6' },
-        { n: 3, lat: 26.2139, lng: 127.6792, label: '國際通大道', url: 'https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7', fill: '#2D6A4F' }
-      ],
-      lines: [
-        { latlngs: [[26.6945, 127.8789], [26.5958, 127.9775], [26.2139, 127.6792]], color: '#0077B6', dash: '10 12', weight: 3 }
-      ]
-    },
-    day3: {
-      markers: [
-        { n: 'A1', lat: 26.217, lng: 127.719, label: '【路線 A】首里城', url: 'https://maps.app.goo.gl/nHDxnPEirHicPrX57', fill: '#2D6A4F' },
-        { n: 'A2', lat: 26.2148, lng: 127.6886, label: '【路線 A】榮町市場', url: 'https://maps.app.goo.gl/JqbjpN2LByFWTPEK7', fill: '#2D6A4F' },
-        { n: 'B1', lat: 26.3026, lng: 127.7659, label: '【路線 B】AEON MALL Okinawa Rycom', url: 'https://maps.app.goo.gl/wfV52WwLwcMhLSUR7', fill: '#0077B6' },
-        { n: 'B2', lat: 26.2247, lng: 127.6979, label: '【路線 B】新都心', url: 'https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7', fill: '#0077B6' },
-        { n: 'C1', lat: 26.2498, lng: 127.7356, label: '【路線 C】PARCO CITY', url: 'https://maps.app.goo.gl/kapmkTsQvwE7XTbN8', fill: '#FF8C42' },
-        { n: 'C2', lat: 26.1697, lng: 127.6578, label: '【路線 C】ASHIBINAA Outlet', url: 'https://maps.app.goo.gl/18vT41R8GX5xvN1c7', fill: '#FF8C42' },
-        { n: '◎', lat: 26.2139, lng: 127.6792, label: '國際通（路線 A／B 常經過）', url: 'https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7', fill: '#6B7280' }
-      ],
-      lines: [
-        { latlngs: [[26.217, 127.719], [26.2148, 127.6886], [26.2139, 127.6792]], color: '#2D6A4F', dash: '8 10', weight: 3 },
-        { latlngs: [[26.3026, 127.7659], [26.2247, 127.6979], [26.2139, 127.6792]], color: '#0077B6', dash: '8 10', weight: 3 },
-        { latlngs: [[26.2498, 127.7356], [26.1697, 127.6578]], color: '#FF8C42', dash: '8 10', weight: 3 }
-      ]
-    },
-    day4: {
-      markers: [
-        { n: 1, lat: 26.2182, lng: 127.6733, label: '波之上神宮', url: 'https://maps.app.goo.gl/LGKiPsZ3WQAY95d36', fill: '#023E8A' },
-        { n: 2, lat: 26.1697, lng: 127.6578, label: 'ASHIBINAA Outlet', url: 'https://maps.app.goo.gl/18vT41R8GX5xvN1c7', fill: '#0077B6' },
-        { n: 3, lat: 26.158, lng: 127.6605, label: '瀨長島 Umikaji Terrace', url: 'https://maps.app.goo.gl/4AtRs3WCAhP1D8NUA', fill: '#2D6A4F' },
-        { n: 4, lat: 26.196, lng: 127.6461, label: '那霸空港（回程）', url: 'https://maps.app.goo.gl/Jipi4K6FaHuCgNcw6', fill: '#FF6B6B' }
-      ],
-      lines: [
-        { latlngs: [[26.2182, 127.6733], [26.1697, 127.6578], [26.158, 127.6605], [26.196, 127.6461]], color: '#0077B6', dash: '10 12', weight: 3 }
-      ]
-    }
-  };
-
-  const mapInstances = {};
-
-  function buildMap(dayId) {
-    const cfg = DAY_MAPS[dayId];
-    const el = document.getElementById('map-' + dayId);
-    if (!cfg || !el || mapInstances[dayId]) return;
-
-    const map = L.map(el, { scrollWheelZoom: false, attributionControl: true });
-    L.tileLayer(OSM, { attribution: OSM_ATTR, maxZoom: 19 }).addTo(map);
-
-    const bounds = [];
-    cfg.markers.forEach((m) => {
-      const icon = numIcon(m.n, m.fill);
-      const mk = L.marker([m.lat, m.lng], { icon }).addTo(map);
-      mk.bindPopup(mapPopup(m.label, m.url));
-      bounds.push([m.lat, m.lng]);
-    });
-
-    (cfg.lines || []).forEach((ln) => {
-      L.polyline(ln.latlngs.map((c) => [c[0], c[1]]), {
-        color: ln.color,
-        weight: ln.weight || 3,
-        opacity: 0.82,
-        dashArray: ln.dash
-      }).addTo(map);
-    });
-
-    map.fitBounds(bounds, { padding: [36, 36], maxZoom: dayId === 'day1' ? 8 : 12 });
-    mapInstances[dayId] = map;
-  }
-
-  function refreshMap(dayId) {
-    const m = mapInstances[dayId];
-    if (m) requestAnimationFrame(() => { m.invalidateSize(); });
-  }
-
-  window.initOkinawaDayMap = function (dayId) {
-    if (!DAY_MAPS[dayId]) return;
-    if (mapInstances[dayId]) {
-      refreshMap(dayId);
-      return;
-    }
-    buildMap(dayId);
-    setTimeout(() => refreshMap(dayId), 120);
-  };
-
-  window.addEventListener('resize', () => {
-    Object.keys(mapInstances).forEach((id) => refreshMap(id));
-  });
-})();
-</script>
-<script>
-// Default checklist items
-const defaultChecklists = {
-  checklistKids: [
-    '兒童護照（效期確認）',
-    '推車 / 背巾',
-    '兒童防曬乳 SPF50+',
-    '帽子 / 遮陽帽',
-    '水壺',
-    '兒童常備藥（退燒、止瀉、OK繃）',
-    '小零食 / 餅乾',
-    '換洗衣物 x4套',
-    '薄外套（室內冷氣很冷）',
-    '小毯子（飛機和車上用）',
-    '尿布（視年齡）',
-    '濕紙巾',
-  ],
-  checklistDocs: [
-    '護照（請務必確認）',
-    '電子機票 / 行程確認單',
-    '旅遊平安險保單',
-    '日幣現金',
-    '信用卡',
-    '飯店確認信',
-    'Visit Japan Web 註冊完成',
-  ],
-  checklistDaily: [
-    '防曬乳',
-    '墨鏡',
-    '行動電源',
-    '充電線',
-    '相機 / 記憶卡',
-    '雨傘 / 輕便雨衣',
-    '拖鞋 / 涼鞋',
-    '盥洗用品',
-  ],
-  checklistOther: [
-    '確認飯店實際名稱',
-    '查好海豚秀表演時間',
-    '下載沖繩單軌電車路線圖',
-    '第三天午晚餐餐廳先查好',
-    '準備塑膠袋裝髒衣服',
-    '確認行李重量限制',
-  ]
-};
-
-// Storage keys
-const STORAGE_PREFIX = 'okinawa2026_';
-
-function loadData(key, fallback) {
-  try {
-    const val = localStorage.getItem(STORAGE_PREFIX + key);
-    return val ? JSON.parse(val) : fallback;
-  } catch { return fallback; }
-}
-
-function saveData(key, value) {
-  try {
-    localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
-    showSaveToast();
-  } catch {}
-}
-
-function showSaveToast() {
-  const toast = document.getElementById('saveToast');
-  toast.classList.add('show');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
-}
-
-// Tab navigation
-document.querySelectorAll('.nav-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-
-    const target = tab.dataset.target;
-    document.querySelectorAll('.day-section, .analysis-section').forEach(s => s.classList.remove('active'));
-    const el = document.getElementById(target);
-    if (el) el.classList.add('active');
-    if (/^day[1-4]$/.test(target)) {
-      setTimeout(() => window.initOkinawaDayMap(target), 80);
-    }
-  });
-});
-
-// Notes auto-save
-let saveTimer;
-document.querySelectorAll('.note-area textarea').forEach(ta => {
-  const key = ta.dataset.key;
-  ta.value = loadData('note_' + key, '');
-  ta.addEventListener('input', () => {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => saveData('note_' + key, ta.value), 500);
-  });
-});
-
-// Checklist rendering
-function renderChecklist(id) {
-  const container = document.querySelector(`#${id} .check-items`);
-  const items = loadData('cl_' + id, defaultChecklists[id] || []);
-  const checked = loadData('cl_checked_' + id, {});
-
-  container.innerHTML = items.map((item, i) => `
-    <label class="check-item">
-      <input type="checkbox" ${checked[i] ? 'checked' : ''} data-idx="${i}" data-list="${id}">
-      <span>${item}</span>
-    </label>
-  `).join('');
-
-  container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const checked = loadData('cl_checked_' + id, {});
-      checked[cb.dataset.idx] = cb.checked;
-      saveData('cl_checked_' + id, checked);
-    });
-  });
-}
-
-function addCheckItem(id) {
-  const input = document.querySelector(`#${id} .new-item-input`);
-  const val = input.value.trim();
-  if (!val) return;
-
-  const items = loadData('cl_' + id, defaultChecklists[id] || []);
-  items.push(val);
-  saveData('cl_' + id, items);
-  input.value = '';
-  renderChecklist(id);
-}
-
-// Handle enter key on checklist inputs
-document.querySelectorAll('.new-item-input').forEach(input => {
-  input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      const listId = input.closest('.checklist').id;
-      addCheckItem(listId);
-    }
-  });
-});
-
-// Initialize checklists
-Object.keys(defaultChecklists).forEach(id => renderChecklist(id));
-</script>
-
+  <footer class="site-footer">
+    <p>小田田家族・2026 蔚藍沖繩旅遊手冊　·　<a href="https://www.wedopr.com/" target="_blank" rel="noopener noreferrer">WEDO International Marketing Group</a></p>
+  </footer>
 </body>
 </html>
