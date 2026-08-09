@@ -275,6 +275,7 @@
       display: grid;
       grid-template-columns: 76px 1fr;
       gap: 22px;
+      min-width: 0;
       min-height: 176px;
       padding: 26px;
       border: 1px solid rgba(11, 75, 87, 0.13);
@@ -282,6 +283,7 @@
       transition: transform 180ms ease, border-color 180ms ease;
     }
     .overview-card:hover { transform: translateY(-4px); border-color: var(--sea); }
+    .overview-card > div { width: 100%; min-width: 0; }
     .overview-day {
       color: var(--coral);
       font-family: Georgia, serif;
@@ -289,7 +291,7 @@
       line-height: 1;
     }
     .overview-card h3 { margin-bottom: 8px; color: var(--sea-deep); font-size: 1.18rem; }
-    .overview-card p { margin-bottom: 0; color: var(--muted); font-size: 0.9rem; }
+    .overview-card p { margin-bottom: 0; color: var(--muted); font-size: 0.9rem; overflow-wrap: anywhere; }
 
     .logistics { background: var(--paper); }
     .logistics-grid {
@@ -454,7 +456,7 @@
       .section-heading, .logistics-grid, .reminder-grid { grid-template-columns: 1fr; gap: 18px; }
       .section-heading { margin-bottom: 28px; }
       .overview .section { padding-top: 66px; padding-bottom: 66px; }
-      .overview-grid { grid-template-columns: 1fr; }
+      .overview-grid { grid-template-columns: minmax(0, 1fr); }
       .overview-card { min-height: 150px; }
       .flight-table { min-width: 560px; }
       .panel:has(.flight-table) { overflow-x: auto; }
@@ -523,19 +525,19 @@
         <div class="overview-grid">
           <a class="overview-card" href="#day-1">
             <span class="overview-day">01</span>
-            <div><h3>抵達那霸，入住飯店</h3><p>台中搭機前往沖繩，抵達後入住那霸市區，晚上自行到便利商店或超市採買。</p></div>
+            <div><h3>抵達那霸，入住飯店</h3><p>台中搭機→前往沖繩→那霸市區</p></div>
           </a>
           <a class="overview-card" href="#day-2">
             <span class="overview-day">02</span>
-            <div><h3>海洋博、鳳梨園、國際通</h3><p>前往海洋博紀念公園、美之海水族館和名護鳳梨園，晚上回國際通逛街。</p></div>
+            <div><h3>海洋博、鳳梨園、國際通</h3><p>海洋博紀念公園→美之海水族館→名護鳳梨園→國際通</p></div>
           </a>
           <a class="overview-card" href="#day-3">
             <span class="overview-day">03</span>
-            <div><h3>波之上神宮、Outlet、瀨長島</h3><p>上午參拜波之上神宮，接著到 ASHIBINAA OUTLET 購物，最後前往瀨長島屋台村。</p></div>
+            <div><h3>波之上神宮、Outlet、瀨長島</h3><p>波之上神宮→ASHIBINAA OUTLET→瀨長島屋台村</p></div>
           </a>
           <a class="overview-card" href="#day-4">
             <span class="overview-day">04</span>
-            <div><h3>那霸自由活動，前往機場</h3><p>使用單軌電車一日券安排市區活動，傍晚搭專車到那霸空港，搭乘 JX313 回台。</p></div>
+            <div><h3>那霸自由活動，前往機場</h3><p>那霸市區自由活動→國際通／新都心→那霸空港</p></div>
           </a>
         </div>
         <p class="source-note">本頁依據 2026 年 8 月 5 日大聲旅行社提供的「小田田家族 2026 年蔚藍沖繩旅遊」規劃行程整理。旅途中如遇交通、天候或其他不可抗力，實際安排以領隊與行前說明為準；<a href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>完整內容請下載 PDF</a>。</p>
