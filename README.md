@@ -4,7 +4,7 @@
 
 網站內容以 `行程資料-2026-小田田家族蔚藍沖繩.pdf` 為正式行程來源。
 
-社群分享代表圖：`旅遊資訊/og-okinawa-2026.jpg`；每日景點與路線按鈕會開啟 Google Maps。
+社群分享代表圖：`assets/og-okinawa-2026.jpg`；住宿介紹頁：`accommodation.html`；每日景點與路線按鈕會開啟 Google Maps。
 
 ## 本機預覽
 
