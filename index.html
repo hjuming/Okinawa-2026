@@ -332,6 +332,24 @@
     .luggage-item strong { display: block; color: var(--sea-deep); font-family: Georgia, serif; font-size: 2.35rem; line-height: 1; }
     .luggage-item span { color: var(--muted); font-size: 0.82rem; }
 
+    .meet {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 18px;
+      margin-top: 18px;
+      padding: clamp(24px, 4vw, 36px);
+      border: 1px solid var(--line);
+      background: var(--sea-soft);
+    }
+    .meet-main h3 { margin-bottom: 10px; color: var(--sea-deep); font-size: 1.5rem; }
+    .meet-main p { margin-bottom: 0; color: var(--muted); font-size: 0.9rem; }
+    .meet-meta { display: grid; gap: 0; margin: 0; align-self: center; }
+    .meet-meta div { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 1px solid rgba(11, 75, 87, 0.16); }
+    .meet-meta div:last-child { border-bottom: 1px solid rgba(11, 75, 87, 0.16); }
+    .meet-meta dt { color: var(--muted); font-size: 0.82rem; }
+    .meet-meta dd { margin: 0; color: var(--sea-deep); font-weight: 700; text-align: right; }
+    .meet-meta dd a { color: var(--sea); text-decoration: underline; text-underline-offset: 3px; }
+
     .itinerary { background: var(--sea-deep); color: var(--white); }
     .itinerary .section-heading h2, .itinerary .section-heading p { color: var(--white); }
     .itinerary .section-heading p { color: rgba(255, 255, 255, 0.72); }
@@ -415,6 +433,75 @@
     details[open] summary::after { content: "−"; }
     details p, details ul { margin: 0; padding: 0 22px 22px; color: var(--muted); font-size: 0.9rem; }
     details ul { padding-left: 42px; }
+    details li + li { margin-top: 8px; }
+    details strong { color: var(--sea-deep); }
+    details a { color: var(--sea); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+    .guide-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+      gap: clamp(20px, 3vw, 34px);
+      align-items: center;
+      margin: 0 0 18px;
+      padding: clamp(20px, 3vw, 30px);
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .guide-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 1px solid var(--line);
+      background: var(--white);
+      cursor: zoom-in;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .guide-thumb img { width: 100%; height: auto; }
+    .guide-thumb:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .guide-zoom {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(11, 75, 87, 0.88);
+      color: var(--white);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .guide-card figcaption h3 { margin-bottom: 12px; color: var(--sea-deep); font-size: 1.6rem; }
+    .guide-card figcaption p { color: var(--muted); font-size: 0.92rem; }
+    .guide-card figcaption .button { margin-top: 6px; }
+
+    .lightbox {
+      width: min(94vw, 780px);
+      max-height: 94vh;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+    .lightbox::backdrop { background: rgba(9, 34, 40, 0.86); }
+    .lightbox img { width: 100%; height: auto; max-height: 88vh; object-fit: contain; margin: 0 auto; }
+    .lightbox-close {
+      position: absolute;
+      top: -46px;
+      right: 0;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--white);
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .lightbox-close:hover { background: rgba(255, 255, 255, 0.16); }
+
     .reminder-aside {
       position: relative;
       min-height: 360px;
@@ -427,7 +514,10 @@
     .reminder-aside > * { position: relative; z-index: 1; }
     .reminder-aside h3 { color: var(--white); font-size: 1.7rem; }
     .reminder-aside p { color: rgba(255, 255, 255, 0.8); }
-    .reminder-aside .button { margin-top: 14px; border-color: var(--sand); background: var(--sand); color: var(--sea-deep); }
+    .aside-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .reminder-aside .button { border-color: var(--sand); background: var(--sand); color: var(--sea-deep); }
+    .reminder-aside .deck-link { border-color: rgba(255, 255, 255, 0.6); background: transparent; color: var(--white); }
+    .reminder-aside .deck-link:hover { background: rgba(255, 255, 255, 0.16); }
     .contact-note { margin-top: 34px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.72); font-size: 0.82rem; }
 
     .closing { padding: 100px 20px 112px; background: var(--paper); text-align: center; }
@@ -453,7 +543,9 @@
       .hero-copy { padding: 28px 22px; }
       h1 { font-size: clamp(2.5rem, 15vw, 4.2rem); }
       .section { padding: 74px 0; }
-      .section-heading, .logistics-grid, .reminder-grid { grid-template-columns: 1fr; gap: 18px; }
+      .section-heading, .logistics-grid, .reminder-grid, .meet, .guide-card { grid-template-columns: 1fr; gap: 18px; }
+      .lightbox { width: min(96vw, 560px); }
+      .lightbox-close { top: -44px; }
       .section-heading { margin-bottom: 28px; }
       .overview .section { padding-top: 66px; padding-bottom: 66px; }
       .overview-grid { grid-template-columns: minmax(0, 1fr); }
@@ -508,7 +600,7 @@
           </div>
           <div class="hero-actions">
             <a class="button" href="#itinerary">查看四天行程</a>
-            <a class="button secondary" href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>下載旅行社規劃行程 PDF</a>
+            <a class="button secondary" href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>下載旅遊資料 PDF</a>
           </div>
         </div>
       </div>
@@ -541,7 +633,7 @@
             <div><h3>那霸自由活動，前往機場</h3><p>那霸市區自由活動→國際通／新都心→那霸空港</p></div>
           </a>
         </div>
-        <p class="source-note">本頁依據 2026 年 8 月 5 日大聲旅行社提供的「小田田家族 2026 年蔚藍沖繩旅遊」規劃行程整理。旅途中如遇交通、天候或其他不可抗力，實際安排以領隊與行前說明為準；<a href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>完整內容請下載 PDF</a>。</p>
+        <p class="source-note">本頁依據大聲旅行社最新版「小田田家族 2026 年蔚藍沖繩旅遊」旅遊資料與行前說明會簡報整理（2026 年 8 月 17 日更新）。旅途中如遇交通、天候或其他不可抗力，實際安排以領隊與行前說明為準；<a href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>完整內容請下載 PDF</a>。</p>
       </div>
     </section>
 
@@ -582,7 +674,20 @@
             </dl>
           </aside>
         </div>
-        <p class="source-note">集合資訊：2026 年 8 月 19 日（三）14:10，台中清泉崗機場國際航廈台灣人壽前集合。出發前請再依領隊與航空公司公告確認報到櫃台、班機與行李規定。</p>
+        <div class="meet">
+          <div class="meet-main">
+            <p class="panel-label">集合資訊</p>
+            <h3>8/19（三）14:10・台中清泉崗機場</h3>
+            <p>國際航廈「台灣人壽」前集合。請於班機起飛前 2.5 小時抵達指定櫃台，抵達前建議先撥領隊手機確認集合位置。</p>
+          </div>
+          <dl class="meet-meta">
+            <div><dt>領隊／導遊</dt><dd>陳恆智（阿智）先生</dd></div>
+            <div><dt>手機</dt><dd><a href="tel:+886922000606">0922-000-606</a></dd></div>
+            <div><dt>辨識方式</dt><dd>身穿大聲旅行社背心</dd></div>
+            <div><dt>團體編號</dt><dd>OKA04JX260819XQ</dd></div>
+          </dl>
+        </div>
+        <p class="source-note">自行攜帶護照的貴賓，出發前請再次確認護照已放入隨身包包，並特別留意不要帶到舊護照。護照效期需較回國日期延長六個月以上。出發前請再依領隊與航空公司公告確認報到櫃台、班機與行李規定。</p>
       </div>
     </section>
 
@@ -648,7 +753,7 @@
               <h3>那霸自由活動，晚上回台</h3>
               <p class="day-lead">不排固定景點，可依自己的安排到國際通或新都心逛街，之後搭專車前往那霸空港，搭乘 JX313 回台。</p>
               <ul class="day-points">
-                <li><span class="gift">贈送：單軌電車一日券。</span></li>
+                <li><span class="gift">發放代金：日幣 1,000 元／位。</span></li>
                 <li><span><strong>全日自由活動</strong>：可前往<a class="map-link" href="https://maps.app.goo.gl/TmCJ5rSUXy85YKUt7" target="_blank" rel="noopener noreferrer">國際通大道</a>或<a class="map-link" href="https://maps.app.goo.gl/7PEy6sV1mLQ3Qfao7" target="_blank" rel="noopener noreferrer">新都心</a>逛街購物。</span></li>
                 <li><span><strong>專車前往<a class="map-link" href="https://maps.app.goo.gl/Jipi4K6FaHuGooNcw6" target="_blank" rel="noopener noreferrer">那霸空港</a></strong>，在機場商店街採買後，搭乘 JX313 回台。</span></li>
               </ul>
@@ -658,8 +763,8 @@
           </article>
         </div>
         <div class="free-day">
-          <div><h3>第四天，自己安排市區行程</h3><p>使用單軌電車一日券，到國際通或新都心逛街，依家人的安排走完最後一天。</p></div>
-          <div class="ticket"><strong>MONORAIL DAY PASS</strong><span>贈送・沖繩單軌電車一日券</span></div>
+          <div><h3>第四天，自己安排市區行程</h3><p>每位發放日幣 1,000 元代金，可到國際通或新都心逛街，依家人的安排走完最後一天。</p></div>
+          <div class="ticket"><strong>¥1,000</strong><span>發放代金・每位日幣 1,000 元</span></div>
         </div>
       </div>
     </section>
@@ -671,47 +776,102 @@
             <p class="section-kicker">行前提醒</p>
             <h2>行前提醒</h2>
           </div>
-          <p>護照、集合、行李、時差、電壓與入境提醒整理在這裡。詳細內容仍以旅行社規劃行程和領隊通知為準。</p>
+          <p>以下依大聲旅行社行前提醒事項與行前說明會簡報整理。詳細內容仍以旅行社最新通知和領隊說明為準。</p>
         </div>
+        <figure class="guide-card">
+          <button class="guide-thumb" type="button" data-lightbox aria-label="放大檢視導遊行前提醒圖卡">
+            <img src="assets/guide-reminders-2026.jpg" width="1024" height="1536" loading="lazy" decoding="async" alt="大聲旅行社導遊提供的沖繩行前提醒圖卡，內容包含集合時間地點、天氣提醒、行李規定、入境免稅額度、禁止攜帶入境物品、素食提醒與航班資訊。">
+            <span class="guide-zoom">點圖放大</span>
+          </button>
+          <figcaption>
+            <p class="panel-label">導遊行前提醒圖卡</p>
+            <h3>一張圖看完重點</h3>
+            <p>領隊整理的行前提醒總表，含集合資訊、行李與菸酒規定、禁止攜帶入境的品項和航班時間。點圖可放大檢視，也可以直接下載存到手機，出發當天離線也看得到。</p>
+            <a class="button secondary" href="assets/guide-reminders-2026.jpg" download="沖繩2026-行前提醒圖卡.jpg">下載圖卡</a>
+          </figcaption>
+        </figure>
         <div class="reminder-grid">
           <div class="details-list">
             <details open>
               <summary>護照與集合</summary>
-              <p>護照效期需較回國日期延長六個月以上，且保持完整無污損。8/19 14:10 於台中清泉崗機場國際航廈台灣人壽前集合；請依領隊與航空公司公告提早抵達辦理手續。</p>
+              <p>自行攜帶護照的貴賓，出發前請再次確認護照已放入包包，並特別留意不要帶到舊護照。護照效期需較回國日期延長六個月以上，且保持完整無污損。8/19 14:10 於台中清泉崗機場國際航廈台灣人壽前集合，請於班機起飛前 2.5 小時抵達指定櫃台；領隊／導遊陳恆智（阿智）先生身穿大聲旅行社背心，手機 <a href="tel:+886922000606">0922-000-606</a>。</p>
             </details>
             <details>
-              <summary>行李與海關</summary>
-              <p>星宇航空國際段每件託運行李不超過 23 公斤，不能合併計算；手提隨身行李 7 公斤。不要替他人攜帶不明物品，出入境時請確實申告攜帶物品。</p>
+              <summary>天氣與穿著</summary>
+              <p>沖繩 8 月中旬正值盛夏，白天約 32–34°C、夜晚約 27–29°C，體感悶熱、紫外線強。建議以短袖透氣衣物為主，攜帶帽子、太陽眼鏡與防曬用品，並準備一件防曬外套。全日均溫約 30°C 左右。此時已過梅雨季但屬颱風季，午後易有突發性陣雨，建議自備摺疊傘隨身（長柄傘請放託運行李），並穿著輕便好走的鞋子。海島日曬強，請記得補充水分並注意防曬。</p>
             </details>
             <details>
-              <summary>時差與電壓</summary>
-              <p>日本比台灣快 1 小時。日本電壓為 100V，攜帶吹風機、電棒等電器前，請先確認設備規格。</p>
+              <summary>行李規定</summary>
+              <ul>
+                <li>託運行李：每人 1 件、23 公斤，以個人計算，不可合併計算重量。</li>
+                <li>手提隨身行李：每人 7 公斤 1 件為原則，另可帶 1 件隨身物品（小包包），合計 2 件；主件尺寸上限 56×36×23 公分。</li>
+                <li>液體、膠狀物及噴霧：每個容器不超過 100 毫升，總量 1 公升內裝入可重複密封的透明夾鏈袋（約 20×20 公分），每人限一袋；超過請放託運行李。</li>
+                <li>指甲刀、修眉刀、水果刀、自拍棒等尖銳或長形物品，請放置託運行李。</li>
+                <li>打火機僅限一般打火機，一人限一顆並放隨身行李，不可託運，防風打火機禁止攜帶。</li>
+                <li>常用藥品可隨身攜帶，但外包裝需具備英文標示。</li>
+              </ul>
             </details>
             <details>
-              <summary>行動電源</summary>
-              <p>行動電源與備用鋰電池請放在隨身行李，不可放入託運行李；實際規定仍以搭乘航空公司公告為準。</p>
+              <summary>行動電源與鋰電池</summary>
+              <p>所有備用電池與行動電源必須隨身攜帶放在手提行李，嚴禁放入託運行李，並請以絕緣膠帶或保護袋包妥；隨身行李每人限帶 2 顆行動電源。行動電源於機上禁止使用。實際規定仍以搭乘航空公司公告為準。</p>
             </details>
             <details>
-              <summary>入境提醒</summary>
-              <p>回台時請勿攜帶肉類製品；水果、植物、土壤及其他食品，請先確認台灣海關規定。如有疑問，請主動申報。</p>
+              <summary>電壓、插座與網路</summary>
+              <p>日本電壓為 100V（台灣為 110V），插座為雙平腳，與台灣相同。手機充電器若標示 100V～240V 為國際電壓規格，可直接使用；若電器是三腳插頭（如筆電），建議另外準備轉接頭。飯店房內請盡量不要使用延長線。本團已贈送網卡一張。</p>
+            </details>
+            <details>
+              <summary>時差與貨幣</summary>
+              <p>日本時間比台灣快 1 小時。日圓紙鈔面額為 1,000、2,000、5,000、10,000 日圓，硬幣為 1、5、10、50、100、500 日圓；建議準備零錢包。2,000 日圓紙鈔流通較少、容易與 1,000 日圓混淆，找零時請確認金額。日本自來水可直接飲用，礦泉水在超市與便利商店也很容易買到。</p>
+            </details>
+            <details>
+              <summary>入境資料</summary>
+              <p>入境日本需填寫入境卡與海關申報單，旅行社會提供，部分基本資料已預先填寫完成。請隨身攜帶筆完成填寫並如實申報。</p>
+            </details>
+            <details>
+              <summary>菸酒免稅額度</summary>
+              <ul>
+                <li>去程入境日本：菸 1 條、酒類 3 瓶（每瓶 760 毫升）。</li>
+                <li>回程入境台灣：菸 1 條、酒類 1.5 公升。</li>
+                <li>電子菸、加熱菸與加熱菸彈均不可帶回台灣。</li>
+                <li>以上額度限年滿 20 歲以上成人。</li>
+              </ul>
+            </details>
+            <details>
+              <summary>禁止攜帶與海關</summary>
+              <p>入境日本請勿攜帶含肉類的泡麵與水果。回台時禁止攜帶：肉類產品（含肉乾、肉腸、火腿、培根、肉鬆、生鮮肉、罐頭肉品）、未加工的骨骼／角／皮毛、鮮奶／生蛋／半熟蛋、水果、植物與種子、生鮮植物產品及有發芽能力的植物產品。違者罰鍰自新臺幣 20 萬元起，最高可達 100 萬元。不要替他人攜帶不明物品，出入境時請確實申告攜帶物品。</p>
+            </details>
+            <details>
+              <summary>購物、退稅與小費</summary>
+              <p>日本商店多不免費提供購物袋，建議自備環保購物袋。在同一間商店消費滿 5,000 日圓（不含稅）以上可辦理退稅；免稅購買的消耗品需放入密封袋，於入境後 30 天內攜帶出境，出境前不得拆封使用。日本無小費文化，領隊、導遊與司機小費建議每日合計新台幣 300 元 ×天數，<strong>本團已由旅行社贈送小費</strong>。</p>
+            </details>
+            <details>
+              <summary>盥洗與常備用品</summary>
+              <p>飯店房內備有毛巾、浴巾、吹風機及基本盥洗用品（洗髮精、潤髮乳、沐浴乳、面紙）。牙刷、牙膏、刮鬍刀等一次性用品，部分日本飯店已不主動提供，建議自備較保險；沐浴乳、洗髮精如有慣用品牌，也建議以小瓶分裝自行攜帶。另建議攜帶備用眼鏡、護唇膏、水壺，以及感冒藥、暈車藥、腸胃藥等個人常備藥品。</p>
+            </details>
+            <details>
+              <summary>保險提醒</summary>
+              <p>旅行社已依規定為每位旅客投保旅行業責任保險，主要保障因意外事故所造成的傷害理賠。建議出發前另向熟識的保險專員洽詢，依自身需求加保旅行平安保險、醫療保險或旅遊不便險（保障航班延誤、行李問題、旅程取消或變更、證件遺失等額外費用與損失）。</p>
             </details>
             <details>
               <summary>團體旅遊與行程調整</summary>
-              <p>請遵守團體集合時間，旅遊期間無法接受脫隊要求。若遇塞車、天災或其他不可抗力，旅行社可能在不變更行程內容的前提下調整順序、餐食或交通安排，並以安全為優先。</p>
+              <p>請遵守團體集合時間，旅遊期間無法接受脫隊要求。若遇塞車、天災或其他不可抗力，旅行社可能在不變更行程內容的前提下調整順序、餐食或交通安排，並以安全為優先。搭乘飛機及遊覽車全程請繫上安全帶；依日本法規，遊覽車司機每天行車時間不得超過 10 小時。</p>
             </details>
             <details>
               <summary>住宿與個人安全</summary>
-              <p>貴重物品請隨身攜帶；入住後確認緊急出口與逃生路線。飯店公共區域及房間禁菸，請遵守飯店設施與入住規定，避免產生額外罰金或賠償。</p>
+              <p>貴重物品請隨身攜帶；入住後確認緊急出口與逃生路線。飯店公共區域及房間禁菸，請遵守飯店設施與入住規定，避免產生額外罰金或賠償。房內冰箱酒水與吧台零食皆需付費，退房時請至櫃檯結帳。</p>
             </details>
             <details>
               <summary>特殊需求與餐食</summary>
-              <p>行動不便、孕婦、攜帶嬰幼兒、特殊餐食、單人房或特殊房型需求，請儘早告知旅行社。臨時提出可能產生費用，也不一定能安排。</p>
+              <p>行動不便、孕婦、攜帶嬰幼兒、特殊餐食、單人房或特殊房型需求，請儘早告知旅行社。臨時提出可能產生費用，也不一定能安排。有飲食禁忌、茹素或食物過敏的貴賓，請於出發前告知。日本素食習慣與台灣不同，素食者多可食用蔥、薑、蒜、蛋、奶等食材，且素食選擇較少；建議可自備玉筍、麵筋、素鬆等罐頭備用。</p>
             </details>
           </div>
           <aside class="reminder-aside">
-            <h3>旅行社規劃行程</h3>
-            <p>這個網站方便旅途中查看；旅行社規劃行程、領隊資訊和完整行前說明，請一併保存 PDF。</p>
-            <a class="button" href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>下載旅行社規劃行程 PDF</a>
+            <h3>旅行社最新資料</h3>
+            <p>這個網站方便旅途中查看；旅行社最新版旅遊資料與行前說明會簡報，請一併保存。</p>
+            <div class="aside-actions">
+              <a class="button" href="行程資料-2026-小田田家族蔚藍沖繩.pdf" download>下載旅遊資料 PDF</a>
+              <a class="button deck-link" href="https://canva.link/92jqs7cefa09yd0" target="_blank" rel="noopener noreferrer">開啟行前說明會簡報</a>
+            </div>
             <p class="contact-note">航班、飯店、餐食與行程順序如有臨時異動，請以領隊、航空公司與旅行社最新通知為準。</p>
           </aside>
         </div>
@@ -731,5 +891,22 @@
   <footer class="site-footer">
     <p>小田田家族・2026 蔚藍沖繩旅遊手冊　·　<a href="https://www.wedopr.com/" target="_blank" rel="noopener noreferrer">WEDO International Marketing Group</a></p>
   </footer>
+
+  <dialog class="lightbox" id="guide-lightbox">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="關閉放大檢視">&#215;</button>
+    <img src="assets/guide-reminders-2026.jpg" alt="導遊行前提醒圖卡放大檢視">
+  </dialog>
+
+  <script>
+    (function () {
+      var dlg = document.getElementById('guide-lightbox');
+      if (!dlg || typeof dlg.showModal !== 'function') { return; }
+      document.querySelectorAll('[data-lightbox]').forEach(function (btn) {
+        btn.addEventListener('click', function () { dlg.showModal(); });
+      });
+      dlg.querySelector('[data-lightbox-close]').addEventListener('click', function () { dlg.close(); });
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) { dlg.close(); } });
+    })();
+  </script>
 </body>
 </html>
